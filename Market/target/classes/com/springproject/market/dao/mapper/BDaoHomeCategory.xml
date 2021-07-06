@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springproject.market.dao.BDaoHomeCategory">
+	<select id="categoryList" resultType="com.springproject.market.dto.BDtoProductList">
+		SELECT P.PCODE, P.PNAME, P.PEXPIRATIONDATE, P.PPRICEDC, 100-P.PPRICEDC/P.PPRICE*100, SUM(B.BREVIEWSCORE)/COUNT(B.BREVIEWSCORE), COUNT(B.BREVIEWWRITEDATE), P.PFILEPATH FROM PRODUCT AS P, BNS AS B WHERE P.PCODE=B.PRODUCT_PCODE AND P.PCATEGORY=#{param1} AND P.PDELETEDATE IS NULL AND B.BREVIEWDELETEDATE IS NULL GROUP BY P.PCODE
+	</select>
+	
+</mapper>

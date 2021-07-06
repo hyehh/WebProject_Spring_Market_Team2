@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.springproject.market.dao.BDaoMyPageSellerInfo">
+
+	<!-- 2021.07.06 조혜지 - 판매자 정보 수정 db에 있는 정보 불러오는 method -->
+	<select id="sellerinfoDao" resultType="com.springproject.market.dto.BDtoMyPageSellerInfo">
+		SELECT SID, SNAME, SEMAIL, SBIRTH, STEL, SPOSTALCODE, SADDRESS1, SADDRESS2, SSHOPNAME, SNUMBER 
+		FROM SELLER WHERE SID = #{param1}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 판매자 정보 수정 버튼 클릭 시 정보 업데이트 method -->
+	<update id="sellerInfoUpdateDao">
+		UPDATE SELLER SET SNAME = #{param1}, SEMAIL = #{param2}, SBIRTH = #{param3}, STEL = #{param4}, 
+		SPOSTALCODE = #{param5}, SADDRESS1 = #{param6}, SADDRESS2 = #{param7}, SSHOPNAME = #{param8}, SNUMBER = #{param9} 
+		WHERE SID = #{param10}
+	</update>
+	
+	<!-- 2021.07.06 조혜지 - 판매자 비밀번호 변경하는 method -->
+	<update id="sellerPwUpdateDao">
+		UPDATE SELLER SET SPW = #{param1} WHERE SID = #{param2}
+	</update>
+	
+	<!-- 2021.07.06 조혜지 -판매자 탈퇴하는 method -->
+	<update id="sellerSignOutDao">
+		UPDATE SELLER SET SSIGNOUTREASON = #{param1}, SSIGNOUTCONTENT = #{param2}, SDROPDATE = CURDATE() 
+		WHERE SID = #{param3}
+	</update>
+	
+</mapper>
