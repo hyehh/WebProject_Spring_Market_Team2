@@ -10,7 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BBuyDao;
+import com.springproject.market.dao.BDaoMyPageBuy;
 import com.springproject.market.dto.BBuyDto;
+import com.springproject.market.dto.BDtoMyPageBuy;
 
 public class BCommandMyPageBuyList implements BCommand { // 2021.07.06 조혜지 - 장바구니에서 선택한 상품만 가져오는 command
 
@@ -32,8 +34,8 @@ public class BCommandMyPageBuyList implements BCommand { // 2021.07.06 조혜지
 //			String cId = Share.userId;	
 			String cId = "jenny78";	
 			
-			BBuyDao dao = new BBuyDao();
-			BBuyDto dto = dao.customerBuyList(cId, wId);
+			BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
+			BDtoMyPageBuy dto = dao.customerBuyListDao(cId, wId);
 			dtos.add(dto);
 			
 			session.setAttribute("BUY", dtos);

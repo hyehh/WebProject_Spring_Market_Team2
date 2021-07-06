@@ -40,11 +40,9 @@ public class BCommandMyPageCartList implements BCommand { // 2021.07.05 조혜�
 		System.out.println("jsp" + strPg);  // 확인용
 
 
-//		int total = Integer.parseInt(dao.cartDao(cId)); //총 게시물 수
-//		int total = dao.cartDao(cId); //총 게시물 수
-		System.out.println("너 뭐야?????" + dao.cartDao("jenny78"));;
+		int total = dao.cartDao(cId); //총 게시물 수
 		// 여기서 total은 dao에서 뽑아낼 리스트의 개수가 몇개인지 count 확인해야해요
-		int allPage = (int) Math.ceil(2/(double)rowSize); //페이지수
+		int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 //		int totalPage = total/rowSize + (total%rowSize==0?0:1);
 		int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
 
@@ -54,7 +52,7 @@ public class BCommandMyPageCartList implements BCommand { // 2021.07.05 조혜�
 		// 확인용 콘솔출력
 		System.out.println("전체 페이지수 : "+allPage);
 		System.out.println("현제 페이지 : "+ strPg);
-		System.out.println("ceil:"+Math.ceil(2/rowSize));
+		System.out.println("ceil:"+Math.ceil(total/rowSize));
 
 		int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
 		int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝

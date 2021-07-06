@@ -27,8 +27,8 @@ public class BCommandMyPageCartCheck implements BCommand { // 2021.07.05 조혜�
 		int cart = 0;
 		
 		BDaoMyPageCart dao = sqlSession.getMapper(BDaoMyPageCart.class);
-		int check = dao.cartCheckDao(cId, Integer.parseInt(pCode), cart);
-		
+		int check = dao.cartCheckDao(cId, Integer.parseInt(pCode));
+		System.out.println("장바구니 확인 " + check);
 		session.setAttribute("check", check);
 
 	}

@@ -6,8 +6,8 @@
 <mapper namespace="com.springproject.market.dao.BDaoMyPageCart">
 
 	<!-- 2021.07.06 조혜지 - 장바구니에 같은 제품이 존재하는지 여부 체크하는 method -->
-	<select id="cartCheckDao" resultType="com.springproject.market.dto.BDtoMyPageCart">
-		SELECT COUNT(PRODUCT_PCODE) FROM WISHLIST WHERE CUSTOMER_CID = #{param1} AND PRODUCT_PCODE = #{param1}
+	<select id="cartCheckDao" resultType="Integer">
+		SELECT COUNT(PRODUCT_PCODE) FROM WISHLIST WHERE CUSTOMER_CID = #{param1} AND PRODUCT_PCODE = #{param2}
 	</select>
 	
 	<!-- 2021.07.06 조혜지 - 장바구니 목록 DB에서 불러오는 method -->
@@ -17,7 +17,7 @@
 	</select>	
 	
 	<!-- 2021.07.06 조혜지 - 장바구니 페이지 분할을 위해 몇 줄인지 세는 method -->
-	<select id="cartDao" resultType="com.springproject.market.dto.BDtoMyPageCart">
+	<select id="cartDao" resultType="Integer">
 		SELECT COUNT(P.PCODE) AS CARTDAO FROM WISHLIST AS W, PRODUCT AS P, CUSTOMER AS C 
 		WHERE W.CUSTOMER_CID = C.CID AND W.PRODUCT_PCODE = P.PCODE AND C.CID = #{param1} 
 	</select>
@@ -27,6 +27,7 @@
 		INSERT INTO WISHLIST (WDATE, WQUANTITY, CUSTOMER_CID, PRODUCT_PCODE) VALUES (NOW(),#{param1},#{param2},#{param3})
 	</insert>
 	
+	<!-- 2021.07.06 조혜지 - 장바구니 버튼 클릭시 이미 있는 제품인 경우 DB에 수량 update하는 method -->
 	<update id="cartUpdateDao">
 		UPDATE WISHLIST SET WQUANTITY = WQUANTITY + #{param1} WHERE CUSTOMER_CID = #{param2} AND PRODUCT_PCODE = #{param3}
 	</update>
@@ -38,7 +39,7 @@
 	
 	 <!-- 2021.07.06 조혜지 - 장바구니 선택 상품 삭제하는 method -->
 	 <delete id="cartDeleteDao">
-	 	DELETE FROM WISHLIST WHERE CUSTOMER_CID = #{param1} AND WID = #{param1}
+	 	DELETE FROM WISHLIST WHERE CUSTOMER_CID = #{param1} AND WID = #{param2}
 	 </delete>
 	 
 </mapper>

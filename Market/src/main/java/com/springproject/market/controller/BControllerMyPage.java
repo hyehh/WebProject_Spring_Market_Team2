@@ -160,7 +160,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 		command.execute(session, model, sqlSession);
 		
 		String checkMessage;
-		if((Integer)session.getAttribute("check") == 1) {
+		if((Integer)session.getAttribute("check") >= 1) {
 			checkMessage = "이미 장바구니에 있는 제품입니다. 선택하신 수량만큼 업데이트 되었습니다.";
 			session.setAttribute("checkMessage", checkMessage);
 			command = new BCommandMyPageCartUpdate();

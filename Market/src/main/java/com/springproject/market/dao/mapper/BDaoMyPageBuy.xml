@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper	namespace="com.springproject.market.dao.BDaoMyPageBuy">
+
+	<!-- 2021.07.06 조혜지 - 장바구니에서 선택 상품 주문 버튼 클릭 시 선택한 상품만 DB에서 불러오는 method -->
+	<select id="customerBuyListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT P.PNAME, W.WQUANTITY, P.PEXPIRATIONDATE, P.PPRICEDC, P.PCODE FROM WISHLIST AS W, PRODUCT AS P, CUSTOMER AS C 
+		WHERE W.CUSTOMER_CID = C.CID AND W.PRODUCT_PCODE = P.PCODE AND C.CID = #{param1} AND W.WID = #{param2}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 장바구니 전체 구매를 하기 위해 장바구니 목록 DB에서 불러오는 method -->
+	<select id="allBuyListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT P.PNAME, W.WQUANTITY, P.PEXPIRATIONDATE, P.PPRICEDC, W.WID, P.PCODE FROM WISHLIST AS W, PRODUCT AS P, CUSTOMER AS C 
+		WHERE W.CUSTOMER_CID = C.CID AND W.PRODUCT_PCODE = P.PCODE AND C.CID = #{param1}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 주문자 정보 불러오기 위해 DB에 있는 정보 불러오는 method -->
+	<select id="buyerInfoDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT CNAME, CTEL, CEMAIL FROM CUSTOMER WHERE CID = #{param1}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 선택 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method -->
+	<insert id="insertDao">
+		INSERT INTO BNS (CUSTOMER_CID, BQUANTITY, PRODUCT_PCODE, BNUMBER, BBUYDATE) 
+		VALUES (#{param1},#{param2},#{param3},#{param4},CURDATE())
+	</insert>
+	
+	<insert id="insertDao">
+		INSERT INTO RECEIVER (BRECNAME, BRECPOSTALCODE, BRECADDRESS1, BRECADDRESS2, BRECTEL, BRECCONTENT, CUSTOMER_CID, BNUMBER) 
+		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
+	</insert>
+	
+	<insert id="insertDao">
+		INSERT INTO DELIVERY (CUSTOMER_CID, PRODUCT_PCODE, BNUMBER) 
+		VALUES (#{param1},#{param2},#{param3})
+	</insert>
+	
+	<!-- 2021.07.06 조혜지 - 전체 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method -->
+	<insert id="allInsertDao">
+		INSERT INTO BNS (CUSTOMER_CID, BQUANTITY, PRODUCT_PCODE, BNUMBER, BBUYDATE) 
+		VALUES (#{param1},#{param2},#{param3},#{param4},CURDATE())
+	</insert>
+	
+	<insert id="allInsertDao">
+		INSERT INTO RECEIVER (BRECNAME, BRECPOSTALCODE, BRECADDRESS1, BRECADDRESS2, BRECTEL, BRECCONTENT, CUSTOMER_CID, BNUMBER) 
+		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
+	</insert>
+	
+	<insert id="allInsertDao">
+		INSERT INTO DELIVERY (CUSTOMER_CID, PRODUCT_PCODE, BNUMBER) 
+		VALUES (#{param1},#{param2},#{param3})
+	</insert>
+	
+	<!-- 2021.07.06 조혜지 - 결제 완료 시 주문 번호 불러오는 method -->
+	<select id="bNumberDao" resultType="String">
+		SELECT BNUMBER FROM BNS WHERE BSEQ = (SELECT MAX(BSEQ) FROM BNS) AND CUSTOMER_CID = #{param1}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 장바구니에서 구매한 제품의 pCode 구하는 method -->
+	<select id="pCodeListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT P.PCODE FROM BNS AS B, PRODUCT AS P WHERE P.PCODE = B.PRODUCT_PCODE AND B.BNUMBER = #{param1}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 장바구니에서 구매한 제품 삭제하는 method -->
+	<delete id="buyConfirmCartDeleteDao">
+		DELETE FROM WISHLIST WHERE CUSTOMER_CID = #{param1} AND PRODUCT_PCODE = #{param2}
+	</delete>
+	
+	<!-- 2021.07.06 조혜지 - 결제 완료 시 주문한 상품 리스트 불러오는 method -->
+	<select id="buyConfirmListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT B.BNUMBER, P.PNAME, P.PEXPIRATIONDATE, P.PPRICEDC, B.BQUANTITY FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C 
+		WHERE B.CUSTOMER_CID = C.CID AND B.PRODUCT_PCODE = P.PCODE AND C.CID = #{param1} AND B.BNUMBER = #{param2}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 결제 완료 시 배송 정보 불러오는 method -->
+	<select id="deliveryinfoDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT BRECNAME, BRECPOSTALCODE, BRECADDRESS1, BRECADDRESS2, BRECTEL, BRECCONTENT 
+		FROM RECEIVER WHERE CUSTOMER_CID = #{param1} AND BNUMBER = #{param2}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 구매 취소 버튼 클릭 시 취소일자 업데이트하는 method -->
+	<update id="cancelDayDao">
+		UPDATE BNS SET BBUYCANCELDATE = CURDATE() WHERE BNUMBER = #{param1} AND BBUYDATE >= DATE_ADD(NOW(), INTERVAL -1 DAY)
+	</update>
+	
+	<!-- 2021.07.06 조혜지 - 주문목록/배송조회 주문한 상품 리스트 불러오는 method -->
+	<select id="orderListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT DATEDIFF(B.BBUYDATE, NOW()), B.BNUMBER, B.BBUYDATE, P.PNAME, B.BQUANTITY, D.DCONDITION FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C, DELIVERY AS D 
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE AND D.PRODUCT_PCODE = P.PCODE AND D.CUSTOMER_CID = C.CID AND 
+		D.PRODUCT_PCODE = B.PRODUCT_PCODE AND D.CUSTOMER_CID = B.CUSTOMER_CID AND D.BNUMBER = B.BNUMBER AND 
+		C.CID = #{param1} AND B.BBUYCANCELDATE IS NULL ORDER BY B.BSEQ DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 주문목록/배송조회 페이지 분할을 위해 몇 줄인지 세는 METHOD -->
+	<select id="orderDao" resultType="Integer">
+		SELECT COUNT(B.BNUMBER) FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C, DELIVERY AS D  
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE AND D.PRODUCT_PCODE = P.PCODE AND D.CUSTOMER_CID = C.CID AND 
+		D.PRODUCT_PCODE = B.PRODUCT_PCODE AND D.CUSTOMER_CID = B.CUSTOMER_CID AND D.BNUMBER = B.BNUMBER AND 
+		C.CID = #{param1} AND B.BBUYCANCELDATE IS NULL ORDER BY B.BSEQ DESC 
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 주문 취소한 상품 리스트 불러오는 method -->
+	<select id="cancelListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
+		SELECT B.BNUMBER, B.BBUYDATE, B.BBUYCANCELDATE, P.PNAME, B.BQUANTITY FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C 
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE 
+		AND C.CID = #{param1} AND B.BBUYCANCELDATE IS NOT NULL ORDER BY B.BSEQ DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 주문취소목록 페이지 분할을 위해 몇 줄인지 세는 method -->
+	<select id="cancelDao" resultType="Integer">
+		SELECT COUNT(B.BNUMBER) FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C 
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE 
+		AND C.CID = #{param1} AND B.BBUYCANCELDATE IS NOT NULL ORDER BY B.BSEQ DESC
+	</select>
+	
+</mapper>
