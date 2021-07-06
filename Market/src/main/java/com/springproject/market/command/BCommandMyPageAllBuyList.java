@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BBuyDao;
-import com.springproject.market.dto.BBuyDto;
+import com.springproject.market.dao.BDaoMyPageBuy;
+import com.springproject.market.dto.BDtoMyPageBuy;
 
 public class BCommandMyPageAllBuyList implements BCommand { // 2021.07.06 조혜지 - 장바구니에서 전체 상품 가져오는 command
 
@@ -20,13 +20,12 @@ public class BCommandMyPageAllBuyList implements BCommand { // 2021.07.06 조혜
 //		String cId = Share.userId;	
 		String cId = "jenny78";	
 		
-		BBuyDao dao = new BBuyDao();
-		ArrayList<BBuyDto> dtos = dao.allBuyList(cId);
+		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
+		ArrayList<BDtoMyPageBuy> dtos = dao.allBuyListDao(cId);
 		
 		session.setAttribute("CARTBUY", dtos);
 		
 		int asize = dtos.size();
-		System.out.println("All asize : " + asize);
 		session.setAttribute("asize", asize);
 	}
 

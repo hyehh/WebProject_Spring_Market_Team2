@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.springproject.market.dao.BDaoMyPageReview">
+
+	<!-- 2021.07.06 조혜지 - 리뷰 미작성 목록 불러오는 method -->
+	<select id="reviewRegistrationListDao" resultType="com.springproject.market.dto.BDtoMyPageReview">
+		SELECT B.BNUMBER, B.BBUYDATE, P.PNAME, B.BQUANTITY, P.PPRICEDC, P.PCODE FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C, DELIVERY AS D 
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE AND D.PRODUCT_PCODE = P.PCODE AND D.CUSTOMER_CID = C.CID 
+		AND D.PRODUCT_PCODE = B.PRODUCT_PCODE AND D.CUSTOMER_CID = B.CUSTOMER_CID AND D.BNUMBER = B.BNUMBER AND 
+		B.BREVIEWSCORE IS NULL AND B.BBUYCANCELDATE IS NULL AND D.DENDDATE IS NOT NULL AND 
+		C.CID = #{param1} ORDER BY B.BSEQ DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 리뷰등록 페이지 분할을 위해 몇 줄인지 세는 method -->
+	<select id="reviewregDao" resultType="Integer">
+		SELECT COUNT(P.PCODE) FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C, DELIVERY AS D 
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE AND D.PRODUCT_PCODE = P.PCODE AND D.CUSTOMER_CID = C.CID 
+		AND D.PRODUCT_PCODE = B.PRODUCT_PCODE AND D.CUSTOMER_CID = B.CUSTOMER_CID AND D.BNUMBER = B.BNUMBER AND 
+		B.BREVIEWSCORE IS NULL AND B.BBUYCANCELDATE IS NULL AND D.DENDDATE IS NOT NULL AND C.CID = #{param1} ORDER BY B.BSEQ DESC
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 리뷰 등록하는 method -->
+	<update id="reviewRegistrationDao">
+		UPDATE BNS AS B, PRODUCT AS P SET B.RFILEPATH = #{param1}, B.BREVIEWSCORE = #{param2}, 
+		B.BREVIEWCONTENT = #{param3}, B.BREVIEWWRITEDATE = CURDATE() 
+		WHERE B.PRODUCT_PCODE = P.PCODE AND B.BNUMBER = #{param4} AND P.PCODE = #{param5}
+	</update>
+	
+	<!-- 2021.07.06 조혜지 - 리뷰 작성된 목록 불러오는 method -->
+	<select id="reviewDeleteListDao" resultType="com.springproject.market.dto.BDtoMyPageReview">
+		SELECT B.BNUMBER, B.BBUYDATE, P.PNAME, P.PCODE, B.BREVIEWSCORE, B.BREVIEWCONTENT 
+		FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C 
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE AND B.BREVIEWSCORE IS NOT NULL 
+		AND C.CID = #{param1} ORDER BY B.BSEQ DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 리뷰삭제 페이지 분할을 위해 몇 줄인지 세는 method -->
+	<select id="reviewdelDao" resultType="Integer">
+		SELECT COUNT(P.PCODE) FROM BNS AS B, PRODUCT AS P, CUSTOMER AS C 
+		WHERE B.CUSTOMER_CID = C.CID AND P.PCODE = B.PRODUCT_PCODE AND B.BREVIEWSCORE IS NOT NULL 
+		AND C.CID = #{param1} ORDER BY B.BSEQ DESC
+	</select>
+	
+	<!-- 2021.07.06 조혜지 - 리뷰 삭제하는 method -->
+	<update id="reviewDeleteDao">
+		UPDATE BNS AS B, PRODUCT AS P SET B.BREVIEWDELETEDATE = CURDATE(), B.BREVIEWCONTENT = NULL, 
+		B.BREVIEWSCORE = NULL, B.BREVIEWWRITEDATE = NULL 
+		WHERE B.PRODUCT_PCODE = P.PCODE AND B.BNUMBER = #{param1} AND P.PCODE = #{param2}
+	</update>
+	
+</mapper>

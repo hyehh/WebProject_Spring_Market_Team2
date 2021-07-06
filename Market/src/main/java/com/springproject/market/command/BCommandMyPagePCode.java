@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BBuyDao;
-import com.springproject.market.dto.BBuyDto;
+import com.springproject.market.dao.BDaoMyPageBuy;
+import com.springproject.market.dto.BDtoMyPageBuy;
 
 public class BCommandMyPagePCode implements BCommand { // 2021.07.06 조혜지 - 장바구니에서 구매한 제품의 pCode 구하는 command
 
@@ -17,16 +17,14 @@ public class BCommandMyPagePCode implements BCommand { // 2021.07.06 조혜지 -
 		// TODO Auto-generated method stub
 		
 		String bNumber = (String)session.getAttribute("bNumber");
-		System.out.println(bNumber);
 		
-		BBuyDao dao = new BBuyDao();
+		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
 		
-		ArrayList<BBuyDto> dtos = dao.pCodeList(bNumber);
+		ArrayList<BDtoMyPageBuy> dtos = dao.pCodeListDao(bNumber);
 		
 		session.setAttribute("pCode", dtos);
 		
 		int psize = dtos.size();
-		System.out.println(psize);
 		session.setAttribute("psize", psize);
 	}
 

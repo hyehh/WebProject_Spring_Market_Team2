@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BReviewDao;
+import com.springproject.market.dao.BDaoMyPageReview;
 
 public class BCommandMyPageReviewDelete implements BCommand { // 2021.07.06 조혜지 - 리뷰 작성된 상품 삭제하는 command
 
@@ -21,10 +21,9 @@ public class BCommandMyPageReviewDelete implements BCommand { // 2021.07.06 조�
 		
 		String bNumber = request.getParameter("bNumber");
 		String pCode = request.getParameter("pCode");
-		System.out.println(bNumber);
-		System.out.println(Integer.parseInt(pCode));
-		BReviewDao dao = new BReviewDao();
-		dao.reviewDelete(bNumber, Integer.parseInt(pCode));
+
+		BDaoMyPageReview dao = sqlSession.getMapper(BDaoMyPageReview.class);
+		dao.reviewDeleteDao(bNumber, Integer.parseInt(pCode));
 	}
 
 }

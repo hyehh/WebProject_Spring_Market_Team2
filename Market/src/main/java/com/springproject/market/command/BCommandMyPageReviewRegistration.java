@@ -11,8 +11,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartRequest;
 
-import com.springproject.market.dao.BReviewDao;
-
 public class BCommandMyPageReviewRegistration implements BCommand { // 2021.07.06 조혜지 - 리뷰 등록하는 command
 
 	@Override

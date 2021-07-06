@@ -1,6 +1,6 @@
 package com.springproject.market.dto;
 
-public class BReviewDto { // 2021.05.16 조혜지 - 리뷰 dto
+public class BDtoMyPageReview { // 2021.07.06 조혜지 - 리뷰 dto
 
 	// Field
 	String bNumber;
@@ -13,11 +13,11 @@ public class BReviewDto { // 2021.05.16 조혜지 - 리뷰 dto
 	String bReviewContent;
 	
 	// Constructor
-	public BReviewDto() {
+	public BDtoMyPageReview() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BReviewDto(String bNumber, String bBuyDate, String pName, int bQuantity, int pPriceDC, int pCode) {
+	public BDtoMyPageReview(String bNumber, String bBuyDate, String pName, int bQuantity, int pPriceDC, int pCode) {
 		super();
 		this.bNumber = bNumber;
 		this.bBuyDate = bBuyDate;
@@ -27,7 +27,7 @@ public class BReviewDto { // 2021.05.16 조혜지 - 리뷰 dto
 		this.pCode = pCode;
 	}
 
-	public BReviewDto(String bNumber, String bBuyDate, String pName, int pCode, int bReviewScore,
+	public BDtoMyPageReview(String bNumber, String bBuyDate, String pName, int pCode, int bReviewScore,
 			String bReviewContent) {
 		super();
 		this.bNumber = bNumber;

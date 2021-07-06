@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BReviewDao;
-import com.springproject.market.dto.BReviewDto;
+import com.springproject.market.dao.BDaoMyPageReview;
+import com.springproject.market.dto.BDtoMyPageReview;
 
 public class BCommandMyPageReviewRegistrationList implements BCommand { // 2021.07.06 조혜지 - 리뷰 미등록한 상품을 DB에서 불러오는 command
 
@@ -25,7 +25,7 @@ public class BCommandMyPageReviewRegistrationList implements BCommand { // 2021.
 //		String cId = Share.userId;	
 		String cId = "jenny78";	
 		
-		BReviewDao dao = new BReviewDao();
+		BDaoMyPageReview dao = sqlSession.getMapper(BDaoMyPageReview.class);
 		
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?
 
@@ -39,7 +39,7 @@ public class BCommandMyPageReviewRegistrationList implements BCommand { // 2021.
 		System.out.println("jsp" + strPg);  // 확인용
 
 
-		int total = dao.reviewreg(cId); //총 게시물 수
+		int total = dao.reviewregDao(cId); //총 게시물 수
 		// 여기서 total은 dao에서 뽑아낼 리스트의 개수가 몇개인지 count 확인해야해요
 		int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 //		int totalPage = total/rowSize + (total%rowSize==0?0:1);
@@ -76,7 +76,7 @@ public class BCommandMyPageReviewRegistrationList implements BCommand { // 2021.
 			pageCount.add(i);
 		}
 
-		ArrayList<BReviewDto> dtos = dao.reviewRegistrationList(cId, from, to);
+		ArrayList<BDtoMyPageReview> dtos = dao.reviewRegistrationListDao(cId, from, to);
 
 		request.setAttribute("REVIEW", dtos);
 

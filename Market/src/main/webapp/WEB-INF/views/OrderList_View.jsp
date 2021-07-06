@@ -111,7 +111,7 @@
 							<th>상품명</th>
 							<th>수량</th>
 							<th>배송현황</th>
-							<th></th>
+							<th>주문취소</th>
 						</tr>
 						<c:forEach items="${ORDER }" var="dto">
 						<tr class="order_product">

@@ -18,10 +18,10 @@ public interface BDaoMyPageBuy {
 	public BDtoMyPageBuy buyerInfoDao(String strcId);
 	
 	// 2021.07.06 조혜지 - 선택 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method
-	public void insertDao(String cId, String bNumber, String bRecName, String bRecPostalCode, String bRecAddress1, String bRecAddress2, String bRecTel, String bRecContent, HttpSession session);
+	//public void insertDao(String cId, String bNumber, String bRecName, String bRecPostalCode, String bRecAddress1, String bRecAddress2, String bRecTel, String bRecContent, HttpSession session);
 	
 	// 2021.07.06 조혜지 - 전체 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method
-	public void allInsertDao(String cId, String bNumber, String bRecName, String bRecPostalCode, String bRecAddress1, String bRecAddress2, String bRecTel, String bRecContent, HttpSession session);
+	//public void allInsertDao(String cId, String bNumber, String bRecName, String bRecPostalCode, String bRecAddress1, String bRecAddress2, String bRecTel, String bRecContent, HttpSession session);
 	
 	// 2021.07.06 조혜지 - 결제 완료 시 주문 번호 불러오는 method
 	public String bNumberDao(String strcId);
@@ -30,7 +30,7 @@ public interface BDaoMyPageBuy {
 	public ArrayList<BDtoMyPageBuy> pCodeListDao(String bNumber);
 	
 	// 2021.07.06 조혜지 - 장바구니에서 구매한 제품 삭제하는 method
-	public void buyConfirmCartDeleteDao(String cId, HttpSession session);
+	//public void buyConfirmCartDeleteDao(String cId, HttpSession session);
 	
 	// 2021.07.06 조혜지 - 결제 완료 시 주문한 상품 리스트 불러오는 method
 	public ArrayList<BDtoMyPageBuy> buyConfirmListDao(String strcId, String strbNumber);

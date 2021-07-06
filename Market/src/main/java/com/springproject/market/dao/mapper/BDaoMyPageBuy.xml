@@ -23,7 +23,7 @@
 	</select>
 	
 	<!-- 2021.07.06 조혜지 - 선택 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method -->
-	<insert id="insertDao">
+<!-- 	<insert id="insertDao">
 		INSERT INTO BNS (CUSTOMER_CID, BQUANTITY, PRODUCT_PCODE, BNUMBER, BBUYDATE) 
 		VALUES (#{param1},#{param2},#{param3},#{param4},CURDATE())
 	</insert>
@@ -36,10 +36,10 @@
 	<insert id="insertDao">
 		INSERT INTO DELIVERY (CUSTOMER_CID, PRODUCT_PCODE, BNUMBER) 
 		VALUES (#{param1},#{param2},#{param3})
-	</insert>
+	</insert> -->
 	
 	<!-- 2021.07.06 조혜지 - 전체 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method -->
-	<insert id="allInsertDao">
+<!-- 	<insert id="allInsertDao">
 		INSERT INTO BNS (CUSTOMER_CID, BQUANTITY, PRODUCT_PCODE, BNUMBER, BBUYDATE) 
 		VALUES (#{param1},#{param2},#{param3},#{param4},CURDATE())
 	</insert>
@@ -52,7 +52,7 @@
 	<insert id="allInsertDao">
 		INSERT INTO DELIVERY (CUSTOMER_CID, PRODUCT_PCODE, BNUMBER) 
 		VALUES (#{param1},#{param2},#{param3})
-	</insert>
+	</insert> -->
 	
 	<!-- 2021.07.06 조혜지 - 결제 완료 시 주문 번호 불러오는 method -->
 	<select id="bNumberDao" resultType="String">
@@ -65,9 +65,9 @@
 	</select>
 	
 	<!-- 2021.07.06 조혜지 - 장바구니에서 구매한 제품 삭제하는 method -->
-	<delete id="buyConfirmCartDeleteDao">
+<!-- 	<delete id="buyConfirmCartDeleteDao">
 		DELETE FROM WISHLIST WHERE CUSTOMER_CID = #{param1} AND PRODUCT_PCODE = #{param2}
-	</delete>
+	</delete> -->
 	
 	<!-- 2021.07.06 조혜지 - 결제 완료 시 주문한 상품 리스트 불러오는 method -->
 	<select id="buyConfirmListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
