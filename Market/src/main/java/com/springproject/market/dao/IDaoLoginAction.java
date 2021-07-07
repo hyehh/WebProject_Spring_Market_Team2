@@ -4,8 +4,11 @@ import com.springproject.market.dto.BDtoLogin;
 
 public interface IDaoLoginAction {
 	
-	public BDtoLogin customerLoginAction(String loginId,  String loginPw);
 	
-	public BDtoLogin sellerLoginAction(String loginId,  String loginPw);
-
+	public String customerId(String loginId, String loginPw);
+	public String customerPw(String loginId, String loginPw);
+	
+	public String sellerId(String loginId, String loginPw);
+	public String sellerPw(String loginId, String loginPw);
+	
 }

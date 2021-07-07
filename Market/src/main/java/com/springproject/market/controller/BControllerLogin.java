@@ -173,6 +173,7 @@ public class BControllerLogin {
 		System.out.println(session.getAttribute("userId"));
 		
 		String returnJsp = (String) session.getAttribute("RETURNJSP");
+		System.out.println(returnJsp);
 		//Command에서 처리한 결과에 따라서 다른 viewPage로 연결
 		return returnJsp;
 	}

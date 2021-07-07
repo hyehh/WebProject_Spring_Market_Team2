@@ -4,12 +4,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 	<mapper namespace="com.springproject.market.dao.IDaoLoginAction">
-		<select id="customerLoginAction" resultType="com.springproject.market.dto.BDtoLogin">
-			SELECT CID, CPW FROM CUSTOMER WHERE CID= #{param1} AND CPW= #{param2}
+		<select id="customerId" resultType="String">
+			SELECT CID FROM CUSTOMER WHERE CID = #{param1} AND CPW=#{param2}
 		</select>
 		
-		<select id="sellerLoginAction" resultType="com.springproject.market.dto.BDtoLogin">
-			SELECT SID, SPW FROM SELLER WHERE SID= #{param1} AND SPW= #{param2}
+		<select id="customerPw" resultType="String">
+			SELECT CPW FROM CUSTOMER WHERE CID = #{param1} AND CPW=#{param2}
 		</select>
+		
+		<select id="sellerId" resultType="String">
+			SELECT SID FROM SELLER WHERE SID = #{param1} AND SPW=#{param2}
+		</select>
+		
+		<select id="sellerPw" resultType="String">
+			SELECT SPW FROM SELLER WHERE SID = #{param1} AND SPW=#{param2}
+		</select>
+		
+		
+		
 	</mapper>
 	

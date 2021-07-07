@@ -2,8 +2,8 @@ package com.springproject.market.dto;
 
 public class BDtoLogin {
 	
-	String userId ;
-	String userPw;
+	private String userId ;
+	private String userPw;
 	
 	public BDtoLogin() {
 		// TODO Auto-generated constructor stub
