@@ -27,6 +27,18 @@ public class BControllerHome {
 	private SqlSession sqlSession;
 	
 	BCommand command = null;
+	
+	private BCommand commandHomeProduct = null;
+	private BCommand commandHomeProductQ = null;
+	private BCommand commandHomeRegister_Q = null;
+	
+	@Autowired
+	private void auto(BCommand homeProduct, BCommand homeProductQ, BCommand homeRegister_Q) {
+		// TODO Auto-generated method stub
+		this.commandHomeProduct = homeProduct;
+		this.commandHomeProductQ = homeProductQ;
+		this.commandHomeRegister_Q = homeRegister_Q;
+	}
 
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session) {
@@ -101,8 +113,7 @@ public class BControllerHome {
 		System.out.println("product()");
 		
 		model.addAttribute("request", request);
-		command = new BCommandHomeProduct();
-		command.execute(session, model, sqlSession);
+		commandHomeProduct.execute(session, model, sqlSession);
 		
 		return "product";
 	}
@@ -126,12 +137,10 @@ public class BControllerHome {
 		HttpSession session2 = multiRequest.getSession();
 		
 		model.addAttribute("multiRequest", multiRequest);
-		command = new BCommandHomeRegister_Q();
-		command.execute(session2, model, sqlSession);
+		commandHomeRegister_Q.execute(session2, model, sqlSession);
 		
 		model.addAttribute("request", request);
-		command = new BCommandHomeProductQ();
-		command.execute(session, model, sqlSession);
+		commandHomeProductQ.execute(session, model, sqlSession);
 		
 		return "product";
 	}
