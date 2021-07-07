@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="registerQ">
-		INSERT INTO QNA(PRODUCT_PCODE, CUSTOMER_CID, QTITLE, QCONTENT, QADDDATE, SELLER_SID) VALUES(#{param1}, #{param2}, #{param3}, #{param4}, NOW(), 'admin')
+		INSERT INTO QNA(PRODUCT_PCODE, CUSTOMER_CID, QTITLE, QCONTENT, QADDDATE, SELLER_SID, QFILEPATH) VALUES(#{param1}, #{param2}, #{param3}, #{param4}, NOW(), 'admin', #{param5})
 	</insert>
 	
 	<select id="qnaList" resultType="com.springproject.market.dto.BDtoQnA">

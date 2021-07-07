@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import com.springproject.market.dao.BDaoMyPageBuy;
 import com.springproject.market.dto.BDtoMyPageBuy;
 
-public class BCommandMyPageBuy implements BCommand { // 2021.07.06 조혜지 - 선택 상품 주문 선택 시 주문서 작성/결제 창에서 주문 및 결제 정보 insert하는 command
+public class BCommandMyPageBuy implements BCommand { // 2021.07.07 조혜지 - 선택 상품 주문 선택 시 주문서 작성/결제 창에서 주문 및 결제 정보 insert하는 command
 
 	@Override
 	public void execute(HttpSession session, Model model, SqlSession sqlSession) {

@@ -101,7 +101,7 @@
 				<h1>문의 등록</h1>
 				
 				<div class="form">
-					<form name="qnaForm" action="register_q" method="post" accept-charset="UTF-8">
+					<form name="qnaForm" action="register_q" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
 						<input type="hidden" name="pCode" value="<%=pCode %>">
 						<table>
 							<tr>
@@ -118,7 +118,7 @@
 							</tr>		
 							<tr>
 								<td>이미지 등록</td>
-								<td><input type="file" name="qnaFile" ></td>
+								<td><input type="file" name="uploadFile" ></td>
 							</tr>	
 						</table>
 						<input type="button" value="등록" style="margin-left: -130px;" onclick="addQna()">

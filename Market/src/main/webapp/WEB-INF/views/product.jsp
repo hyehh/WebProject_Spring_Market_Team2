@@ -430,7 +430,7 @@
 				        </a>
 				        <div class="uk-accordion-content">
 				        	<div class="qna_content">
-				        		<img alt="" src="${dtoQnA.qFilePath }">
+				        		<img alt="" src="${pageContext.request.contextPath }/resources/qnasave/${dtoQnA.qFilePath }">
 				        		<p>${dtoQnA.qContent }</p>
 				        	</div>
 				        	<div class="qna_content">${dtoQnA.aContent }</div>
