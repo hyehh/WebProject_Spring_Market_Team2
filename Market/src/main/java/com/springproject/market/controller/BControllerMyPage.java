@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springproject.market.command.BCommand;
 import com.springproject.market.command.BCommandHomeProductQ;
@@ -308,7 +309,8 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	
 	// 리뷰 등록하기
 	@RequestMapping("/ReviewRegistration")
-	public String ReviewRegistration(HttpSession session, Model model, HttpServletRequest request) {
+	public String ReviewRegistration(Model model, MultipartHttpServletRequest request) {
+		HttpSession session = request.getSession();
 		model.addAttribute("request", request);
 		command = new BCommandMyPageReviewRegistration();
 		command.execute(session, model, sqlSession);

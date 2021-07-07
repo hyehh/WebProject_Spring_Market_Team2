@@ -326,7 +326,7 @@
 							<p>${dtoReview.bReviewWriteDate }</p>
 						</td>
 						<td>
-							<img alt="${dtoReview.customer_cId }님의 리뷰 이미지" src="${dtoReview.rFilePath }" onerror="this.style.display='none'">
+							<img alt="${dtoReview.customer_cId }님의 리뷰 이미지" src="${pageContext.request.contextPath }/resources/reviewsave/${dtoReview.rFilePath }" onerror="this.style.display='none'">
 							<p>${dtoReview.bReviewContent }</p>
 						</td>
 					</tr>

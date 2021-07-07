@@ -13,7 +13,7 @@ public interface BDaoMyPageReview {
 	public int reviewregDao(String strcId);
 	
 	// 2021.07.06 조혜지 - 리뷰 등록하는 method
-	public void reviewRegistrationDao(int bReviewScore, String bReviewContent, String bNumber, int pCode, String rFilePath);
+	public void reviewRegistrationDao(String rFilePath, int bReviewScore, String bReviewContent, String bNumber, int pCode);
 	
 	// 2021.07.06 조혜지 - 리뷰 작성된 목록 불러오는 method
 	public ArrayList<BDtoMyPageReview> reviewDeleteListDao(String strcId, int from, int to);
