@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의-상세보기</title>
-<link rel="stylesheet" href="selectPage.css">
+<link rel="stylesheet" href="/market/resources/css/selectPage.css">
 </head>
 <style>
 	.container_wrap {
@@ -65,10 +65,10 @@
 						</tr>
 						<tr>
 							<td colspan="3">
-								<input type = "submit" value = "목록으로 가기" formaction="QnAList.do" class="buttonModify buttonModify">
-								<input type = "submit" value = "답변등록" formaction="QnAAdd.do" class="buttonModify buttonModify">
-								<input type = "submit" value = "답변수정" formaction="QnAEdit.do" class="buttonModify buttonModify">
-								<input type = "submit" value = "답변삭제" formaction="QnADelete.do" class="buttonModify buttonModify">
+								<input type = "submit" value = "목록으로 가기" formaction="QnAList" class="buttonModify buttonModify">
+								<input type = "submit" value = "답변등록" formaction="QnAAdd" class="buttonModify buttonModify">
+								<input type = "submit" value = "답변수정" formaction="QnAEdit" class="buttonModify buttonModify">
+								<input type = "submit" value = "답변삭제" formaction="QnADelete" class="buttonModify buttonModify">
 							</td>
 						</tr>
 					</table>

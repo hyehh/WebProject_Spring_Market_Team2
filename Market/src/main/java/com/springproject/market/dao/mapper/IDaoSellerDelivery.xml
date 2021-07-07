@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springproject.market.dao.IDaoSellerDelivery">
+
+	<select id="deliveryList" resultType="com.springproject.market.dto.BDtoSellerDelivery">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		
+		select D.bNumber, P.pCategory, P.pName, D.dCondition from Delivery as D, Product as P, BnS as B
+where B.bBuyCancelDate is null and D.Product_pCode = P.pCode and B.Product_pCode = P.pCode and D.Product_pCode = B.Product_pCode
+and D.BNUMBER = B.BNUMBER LIMIT #{param1}, #{param2};
+	</select>
+	
+	<select id="deliveryAll" resultType="Integer">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select count(dCode) from Delivery;
+	</select>
+	
+	<select id="deliveryEnd" resultType="Integer">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select count(dCode) from Delivery as D where dCondition = '배송완료';
+	</select>
+	
+	<select id="deliveryING" resultType="Integer">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select count(dCode) from Delivery as D where dCondition = '배송중';
+	</select>
+	
+	<select id="deliverySearch" parameterType="String" resultType="com.springproject.market.dto.BDtoSellerDelivery">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select D.bNumber, pCategory, pName, dCondition from Delivery as D
+		join Product as P on P.pCode = D.Product_pCode ${param1} LIKE CONCAT('%', #{param2}, '%') group by D.bNumber limit #{param3}, #{param4};
+	</select>
+	
+	<select id="searchDeliveryCount" resultType="Integer">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select count(*) from Delivery as D ${param1} LIKE CONCAT('%', #{param2}, '%') LIMIT #{param3}, #{param4};
+	</select>
+	
+	<select id="deliveryEndList" resultType="com.springproject.market.dto.BDtoSellerDelivery">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select D.bNumber, pCategory, pName, dCondition from Delivery as D 
+		join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송완료' group by D.bNumber limit #{param1}, #{param2};
+	</select>
+	
+	<select id="deliveryINGList" resultType="com.springproject.market.dto.BDtoSellerDelivery">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select D.bNumber, pCategory, pName, dCondition from Delivery as D 
+		join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송중' group by D.bNumber limit #{param1}, #{param2};
+	</select>
+	
+	<select id="selectOrderPage" resultType="com.springproject.market.dto.BDtoSellerDelivery">
+		<!-- SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'; -->
+		select R.bNumber, bBuyDate, bRecName, bRecTel, bRecPostalCode, bRecAddress1, bRecAddress2, dStartDate, dEndDate from Receiver as R 
+		join BnS as B on R.Customer_cId = B.Customer_cId 
+		join Delivery as D on R.bNumber = D.bNumber and B.Product_pCode = D.Product_pCode where R.bNumber = #{param1}
+		group by R.bNumber;
+	</select>
+	
+	<select id="selectDPageList" resultType="com.springproject.market.dto.BDtoSellerDelivery">
+		select pName, pCategory, bQuantity from Product as P 
+		join BnS as B on B.Product_pCode = P.pCode 
+		where bNumber = #{param1}
+	</select>
+	
+	<select id="setCName" resultType="String">
+		select C.cName from Buy as B 
+		inner join Customer as C on B.cId = C.cId 
+		inner join QnAnD as D on D.pCode = B.pCode where B.bNumber = #{param1}
+	</select>
+	
+	<update id="deliveryStart">
+		<!-- SET SQL_SAFE_UPDATES=0; -->
+		update Delivery set dCondition = '배송중', dStartDate = now() 
+		where bNumber = #{param1};
+	</update>
+	
+	<update id="deliveryFinish">
+		update Delivery set dCondition = '배송완료', dEndDate = now() 
+		where bNumber = #{param1}
+	</update>
+
+	<update id="session">
+		SET SESSION SQL_MODE = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES';
+	</update>
+	
+	<update id="sqlUpdates">
+		SET SQL_SAFE_UPDATES=0;
+	</update>
+
+
+</mapper>
+
+
+
+
+

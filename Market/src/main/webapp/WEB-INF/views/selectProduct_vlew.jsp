@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세보기</title>
-<link rel="stylesheet" href="selectPage.css">
+<link rel="stylesheet" href="/market/resources/css/selectPage.css">
 </head>
 <body>
 	<%@ include file="headerSeller.jsp" %>
@@ -79,34 +79,17 @@
 					<td><input type="text" name="pQuantity"
 						value="${selectProduct.pAddDate }"></td>
 				</tr>
-				<%-- <tr>
-				<td>첨부파일</td>
-				<td>
-					<c:set var="requestFilePath" value="${selectProduct.pFilePath }" />
-					<c:choose>
-					    <c:when test="${!empty requestFilePath}">
-					        <a href="${selectProduct.pFilePath }" download>${fileName }</a>
-					    </c:when>
-					    <c:otherwise>
-					        <a>첨부파일 없음</a>
-					    </c:otherwise>
-					</c:choose>
-					<!-- 이미지 수정을 위해서 기존 파일 경로도 전송해야하므로 히든아이템으로 유지한다. -->
-					<input type="hidden" name="oldFilePath" value="${selectProduct.pFilePath }">
-					<input type="file" name="uploadFile" >
-				</td>
-			</tr> --%>
 			<tr>
 				<td>상품이미지 미리보기</td>
-				<td><img width="200" src="${selectProduct.pFilePath }" alt=""/></td>
+				<td><img width="200" src="${pageContext.request.contextPath }/resources/productSave/${selectProduct.pFilePath }" alt=""/></td>
 			</tr>
 			<tr>
 					<td colspan="3">
-					<input type = "submit" formaction="productlist.do" class="button buttonModify" 
+					<input type = "submit" formaction="product_list_management" class="button buttonModify" 
 					value = "목록으로가기" style="zoom: 1.0;">
-					<input type = "submit" formaction="productModify.do" class="buttonModify buttonModify" 
+					<input type = "submit" formaction="productModify" class="buttonModify buttonModify" 
 					value = "수정" style="zoom: 1.0;">
-					<input type = "submit" formaction="productDelete.do" class="buttonModify buttonModify" 
+					<input type = "submit" formaction="productDelete" class="buttonModify buttonModify" 
 					value = "삭제" style="zoom: 1.0;"></td>
 
 				</tr>

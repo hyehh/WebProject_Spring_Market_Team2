@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>배송관리</title>
-<link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="/market/resources/css/css.css">
 </head>
 <style>
 	.container_wrap {
@@ -34,13 +34,13 @@
 	<div class="container_wrap">
 		<div class="container">
 			<h2 align="center">배송 관리</h2>
-			<form action="deliverySearchList.do" method = "post">
+			<form action="deliverySearchList" method = "post">
 				<table class="table">
 					<tr>
 						<td>배송현황</td>
-						<td>총 건수 <a href = "DeliveryList.do">${DELIVERYALL }</a>건</td>
-						<td>배송완료 <a href = "DeliveryEnd.do">${DELIVERYEND }</a>건</td>
-						<td>배송중 <a href = "DeliveryING.do">${DELIVERYING }</a>건</td>
+						<td>총 건수 <a href = "DeliveryList">${DELIVERYALL }</a>건</td>
+						<td>배송완료 <a href = "DeliveryEnd">${DELIVERYEND }</a>건</td>
+						<td>배송중 <a href = "DeliveryING">${DELIVERYING }</a>건</td>
 					</tr>
 					<tr>
 						<td rowspan="2">검색 필터</td>
@@ -69,7 +69,7 @@
 					<th>배송현황</th>		
 				</tr>
 				<c:forEach items="${list}" var="dto">
-				<tr class="value" onclick="location.href='selectOrderPage.do?bNumber=${dto.bNumber }'">
+				<tr class="value" onclick="location.href='selectOrderPage_view?bNumber=${dto.bNumber }'">
 					<td>${dto.bNumber }</td>
 					<td>${dto.pCategory }</td>
 					<td>${dto.pName }</td>
@@ -81,13 +81,13 @@
 			<table class="table">
 				<tr>
 					<td align="center">
-				        [<a href="DeliveryList.do"> ◀◀ </a>] 
-				        [<a href="DeliveryList.do?pg=${FROMPAGE }">◀</a>]
+				        [<a href="DeliveryList"> ◀◀ </a>] 
+				        [<a href="DeliveryList?pg=${FROMPAGE }">◀</a>]
 				        <c:forEach items = "${pageCount }" var = "page" varStatus="ftp">
-				        <a href="DeliveryList.do?pg=${ftp.count}">[ ${ftp.count } ]</a>
+				        <a href="DeliveryList?pg=${ftp.count}">[ ${ftp.count } ]</a>
 				        </c:forEach>
-				        [<a href="DeliveryList.do?pg=${TOPAGE }">▶</a>] 
-				        [<a href="DeliveryList.do?pg=${ALLPAGE }">▶▶</a>]
+				        [<a href="DeliveryList?pg=${TOPAGE }">▶</a>] 
+				        [<a href="DeliveryList?pg=${ALLPAGE }">▶▶</a>]
 					</td>
 				</tr>
 			</table>

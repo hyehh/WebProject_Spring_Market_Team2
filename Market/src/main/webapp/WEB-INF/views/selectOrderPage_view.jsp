@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>배송관리-상세보기</title>
-<link rel="stylesheet" href="selectPage.css">
+<link rel="stylesheet" href="/market/resources/css/selectPage.css">
 </head>
 <body>
 	<%@include file = "headerSeller.jsp" %>
@@ -84,11 +84,11 @@
 		</tr>
 		<tr>
 			<td>
-			<input type = "submit" name = "deliveryFor" value = "배송중" formaction="deliveryFor.do" 
+			<input type = "submit" name = "deliveryFor" value = "배송중" formaction="deliveryFor" 
 			class="buttonModify buttonModify" style="zoom: 1.0;">
 			</td>
 			<td>
-			<input type = "submit" name = "deliveryFinish" value = "배송완료" formaction="deliveryFinish.do" 
+			<input type = "submit" name = "deliveryFinish" value = "배송완료" formaction="deliveryFinish" 
 			class="buttonModify buttonModify" style="zoom: 1.0;">
 			<td>
 		</tr>
