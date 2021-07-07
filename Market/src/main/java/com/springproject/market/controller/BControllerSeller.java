@@ -280,7 +280,7 @@ public class BControllerSeller {
 	 */
 	@RequestMapping("DeliveryList")
 	public String DeliveryList(HttpServletRequest request, Model model, HttpSession session) {
-
+		System.out.println("DeliveryList");
 
 		model.addAttribute("request", request);
 

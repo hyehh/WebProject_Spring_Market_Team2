@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.springproject.market.dao.IDaoSellerInsert;
+import com.springproject.market.util.Share;
 
 public class BCommandSellerAddProduct implements BCommand {
 
@@ -26,8 +27,8 @@ public class BCommandSellerAddProduct implements BCommand {
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
 		
 		// 수훈님과 합칠때주석 풀기
-//		String sId = Share.userId;
-		String sId = "every79";
+		String sId = Share.userId;
+//		String sId = "every79";
 		MultipartRequest multiMain = null;
 
 

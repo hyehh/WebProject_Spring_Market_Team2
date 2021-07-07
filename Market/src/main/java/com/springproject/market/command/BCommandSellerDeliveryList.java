@@ -18,6 +18,7 @@ public class BCommandSellerDeliveryList implements BCommand {
 	@Override
 	public void execute(HttpSession session, Model model, SqlSession sqlSession) {
 		// TODO Auto-generated method stub
+		System.out.println("BCommandSellerDeliveryList");
 		Map<String, Object> map = model.asMap();
 
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
