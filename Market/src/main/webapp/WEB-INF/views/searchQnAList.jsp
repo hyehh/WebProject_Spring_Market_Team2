@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의내역</title>
-<link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="/market/resources/css/css.css">
 </head>
 <style>
 	.container_wrap {
@@ -28,13 +28,13 @@
 	<div class="container_wrap">
 		<div class="container">
 			<h2 align="center">문의 내역</h2>
-			<form action="searchQnAList.do" method = "post">
+			<form action="searchQnAList" method = "post">
 				<table class="table">
 					<tr>
 						<td>문의현황</td>
-						<td>총 문의 <a href = "QnAList.do">${allQnACount }</a>건</td>
-						<td>답변완료 <a href = "QnATure.do">${QnATure }</a>건</td>
-						<td>미답변 <a href = "QnAFalse.do">${QnAFalse }</a>건</td>
+						<td>총 문의 <a href = "QnAList">${allQnACount }</a>건</td>
+						<td>답변완료 <a href = "QnATureList">${QnATure }</a>건</td>
+						<td>미답변 <a href = "QnAFalseList">${QnAFalse }</a>건</td>
 						<td></td>
 					</tr>
 					<tr>
@@ -59,7 +59,7 @@
 					<th>답변상태</th>		
 				</tr>
 				<c:forEach items="${list}" var="dto">
-				<tr class="value" onclick="location.href='selectQnA.do?bNumber=${dto.bNumber }'"><!-- B.bNumber, P.pCategory, p.pName, B.bState -->
+				<tr class="value" onclick="location.href='selectQnAPage_view?bNumber=${dto.bNumber }'"><!-- B.bNumber, P.pCategory, p.pName, B.bState -->
 					<td>${dto.bNumber }</td>
 					<td>${dto.qTitle }</td>
 					<td>${dto.qAddDate }</td>
@@ -71,13 +71,13 @@
 			<table class="table">
 				<tr>
 					<td align="center">
-		        <a href="searchQnAList.do"><button type="button" class="buttonNum buttonNum">◀◀</button></a>
-		        <a href="searchQnAList.do?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">◀</button></a>
+		        <a href="searchQnAList"><button type="button" class="buttonNum buttonNum">◀◀</button></a>
+		        <a href="searchQnAList?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">◀</button></a>
 		        	<c:forEach items = "${pageCount }" var = "page" varStatus="ftp">
-		        		<a href="searchQnAList.do?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">${ftp.count }</button></a>
+		        		<a href="searchQnAList?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">${ftp.count }</button></a>
 		       		</c:forEach>
-		        <a href="searchQnAList.do?pg=${TOPAGE }"><button type="button" class="buttonNum buttonNum">▶</button></a>
-		        <a href="searchQnAList.do?pg=${ALLPAGE }"><button type="button" class="buttonNum buttonNum">▶▶</button></a>
+		        <a href="searchQnAList?pg=${TOPAGE }"><button type="button" class="buttonNum buttonNum">▶</button></a>
+		        <a href="searchQnAList?pg=${ALLPAGE }"><button type="button" class="buttonNum buttonNum">▶▶</button></a>
 		
 					</td>
 				</tr>

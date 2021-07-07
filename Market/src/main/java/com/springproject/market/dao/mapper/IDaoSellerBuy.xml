@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springproject.market.dao.IDaoSellerBuy">
+
+	<update id="session">
+		SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'
+	</update>
+	
+	<select id="buyList" resultType="com.springproject.market.dto.BDtoSellerBuy">
+		select bSeq, B.bNumber, pCategory, pName, bBuyDate, bBuyCancelDate from BnS as B 
+		join Product as P on B.Product_pCode = P.pCode 
+		where bBuyDate is not null group by bNumber limit #{param1}, #{param2}
+	</select>
+
+	<select id="buy" resultType="Integer">
+		select count(bSeq) from BnS as B where bBuyDate is not null;
+	</select>
+	
+	<select id="buyTrue" resultType="Integer">
+		SELECT count(bSeq) FROM Market.BnS where bBuyCancelDate is null and bBuyDate is not null group by bNumber;
+	</select>
+	
+	<select id="buyCancel" resultType="Integer">
+		SELECT count(bSeq) FROM Market.BnS where bBuyCancelDate is not null;
+	</select>
+	
+	<select id="buyTrueList" resultType="com.springproject.market.dto.BDtoSellerBuy">
+		select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate 
+		from BnS as B left join Product as P on B.Product_pCode = P.pCode 
+		where B.bBuyCancelDate is null and B.bBuyDate is not null 
+		group by bNumber limit #{param1}, #{param2}
+	</select>
+	
+	<select id="buyCancelList" resultType="com.springproject.market.dto.BDtoSellerBuy">
+		select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate
+		from BnS as B left join Product as P on B.Product_pCode = P.pCode
+		where B.bBuyCancelDate is not null and B.bBuyDate is not null
+		group by bNumber limit #{param1}, #{param2}
+	</select>
+	
+	<select id="buySearch" resultType="com.springproject.market.dto.BDtoSellerBuy">
+		select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate from BnS as B left join Product as P on B.Product_pCode = P.pCode \n"
+		where B.bBuyDate is not null ${param1} LIKE CONCAT('%', #{param2}, '%') group by bNumber limit #{param3}, #{param4}
+	</select>
+	
+	<select id="searchBuyCount" resultType="Integer">
+		select count(B.bNumber) from BnS as B left join Product as P on B.Product_pCode = P.pCode \n"
+		where B.bBuyDate is not null ${param1} LIKE CONCAT('%', #{param2}, '%') group by bNumber
+	</select>
+	
+	<select id="selectBuy" resultType="com.springproject.market.dto.BDtoSellerBuy">
+		select bNumber, cId, cName, cTel, bReviewContent, bReviewScore, bBuyDate, bReviewWriteDate, bReviewDeleteDate, bBuyCancelDate
+		from BnS as B join Product on B.Product_pCode = Product.pCode 
+		join Customer as C on B.Customer_cId = C.cId
+		where bNumber = #{param1}
+	</select>
+	
+	<select id="selectBuyPageList" resultType="com.springproject.market.dto.BDtoSellerBuy">
+		select pName, pCategory, bQuantity, bBuyCancelDate from Product as P
+		join BnS as B on B.Product_pCode = P.pCode where bNumber = #{param1}
+	</select>
+
+</mapper>

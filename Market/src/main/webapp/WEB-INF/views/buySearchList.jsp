@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문관리</title>
-<link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="/market/resources/css/css.css">
 </head>
 <style>
 	.container_wrap {
@@ -26,13 +26,13 @@
 		<div class="container">
 			<h2 align="center">주문 관리</h2>
 			<br>
-			<form action="buySearchList.do" method = "post">
+			<form action="buySearchList" method = "post">
 				<table class="table">
 					<tr>
 						<td>주문현황</td>
-						<td>총 주문 <a href = "buyList.do">${BUYCOUNT }</a>건</td>
-						<td>결제완료 <a href = "buyTure.do">${BUYTRUE }</a>건</td>
-						<td>취소 <a href = "buyCancel.do">${BUYCANCEL }</a>건</td>
+						<td>총 주문 <a href = "sellerBuyList">${BUYCOUNT }</a>건</td>
+						<td>결제완료 <a href = "buyTureList">${BUYTRUE }</a>건</td>
+						<td>취소 <a href = "buyCancelList">${BUYCANCEL }</a>건</td>
 						<td></td>
 					</tr>
 					<tr>
@@ -58,14 +58,14 @@
 			<br>
 			<table class="table">
 				<tr>
-					<th>주문번호</th>		
-					<th>상품 종류</th>		
-					<th>상품명</th>		
-					<th>주문일</th>		
-					<th>주문현황</th>		
+					<th>주문번호</th>
+					<th>상품 종류</th>
+					<th>상품명</th>
+					<th>주문일</th>
+					<th>주문현황</th>
 				</tr>
 				<c:forEach items="${list}" var="dto">
-				<tr class="value" onclick="location.href='selectBuy.do?bNumber=${dto.bNumber }'"><!-- B.bNumber, P.pCategory, p.pName, B.bState -->
+				<tr class="value" onclick="location.href='selectBuy_vlew?bNumber=${dto.bNumber }'"><!-- B.bNumber, P.pCategory, p.pName, B.bState -->
 					<td>${dto.bNumber }</td>
 					<td>${dto.pCategory }</td>
 					<td>${dto.pName }</td>
@@ -78,13 +78,13 @@
 			<table class="table">
 				<tr>
 					<td align="center">
-				        <a href="buySearchList.do"><button type="button" class="buttonNum buttonNum">◀◀</button></a>
-				        <a href="buySearchList.do?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">◀</button></a>
+				        <a href="buySearchList"><button type="button" class="buttonNum buttonNum">◀◀</button></a>
+				        <a href="buySearchList?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">◀</button></a>
 			        	<c:forEach items = "${pageCount }" var = "page" varStatus="ftp">
-		        		<a href="buySearchList.do?pg=${ftp.count}"><button type="button" class="buttonNum buttonNum">${ftp.count }</button></a>
+		        		<a href="buySearchList?pg=${ftp.count}"><button type="button" class="buttonNum buttonNum">${ftp.count }</button></a>
 			       		</c:forEach>
-				        <a href="buySearchList.do?pg=${TOPAGE }"><button type="button" class="buttonNum buttonNum">▶</button></a>
-				        <a href="buySearchList.do?pg=${ALLPAGE }"><button type="button" class="buttonNum buttonNum">▶▶</button></a>
+				        <a href="buySearchList?pg=${TOPAGE }"><button type="button" class="buttonNum buttonNum">▶</button></a>
+				        <a href="buySearchList?pg=${ALLPAGE }"><button type="button" class="buttonNum buttonNum">▶▶</button></a>
 					</td>
 				</tr>
 			</table>

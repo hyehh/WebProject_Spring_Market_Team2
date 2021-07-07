@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springproject.market.dao.IDaoSellerProduct">
+	<update id="deleteList">
+		UPDATE PRODUCT SET PDELETE = #{param1}, PDELETEDATE = now() WHERE PCODE = #{param2}
+	</update>
+	
+	<insert id="deleteRegister">
+		INSERT INTO REGISTER (PRODUCT_PCODE, SELLER_SID, RDELETEDATE) 
+		VALUE ((SELECT PCODE FROM PRODUCT WHERE PCODE = #{param1}), 'ADMIN', NOW())
+	</insert>
+
+	<select id="productList" resultType="com.springproject.market.dto.BDtoSellerProduct">
+		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE 
+		FROM PRODUCT WHERE PDELETE = 0 LIMIT #{param1}, #{param2}
+	</select>
+
+	<select id="sales" resultType="Integer">
+		SELECT COUNT(PCODE) FROM PRODUCT WHERE PDELETE = 0
+	</select>
+	
+	<select id="salesTrue" resultType="Integer">
+		SELECT COUNT(PCODE) FROM PRODUCT WHERE PDELETE = 0 AND PSTATUS = '판매중'
+	</select>
+	
+	<select id="salesFalse" resultType="Integer">
+		SELECT COUNT(PCODE) FROM PRODUCT WHERE PDELETE = 0 AND PSTATUS = '품절'
+	</select>
+	
+	<select id="searchProduct" parameterType="String" resultType="com.springproject.market.dto.BDtoSellerProduct">
+		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PPRODUCTEA, PSTATUS, PADDDATE 
+		FROM PRODUCT WHERE PDELETE = 0 ${param1} LIKE CONCAT('%', #{param2}, '%') LIMIT #{param3}, #{param4}
+	</select>
+	
+	<select id="salesTureList" resultType="com.springproject.market.dto.BDtoSellerProduct">
+		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE FROM PRODUCT 
+		WHERE PDELETE = 0 AND PSTATUS = '판매중' LIMIT #{param1}, #{param2}
+	</select>
+
+	<select id="salesFalseList" resultType="com.springproject.market.dto.BDtoSellerProduct">
+		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE FROM PRODUCT 
+		WHERE PDELETE = 0 AND PSTATUS = '품절' LIMIT #{param1}, #{param2}
+	</select>
+
+	<select id="selectProduct" resultType="com.springproject.market.dto.BDtoSellerProduct">
+		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PPRODUCTEA, PSTATUS, PADDDATE, PFILEPATH 
+		FROM PRODUCT WHERE PDELETE = 0 AND PCODE = #{param1}
+	</select>
+
+	<select id="selectProductBuyCount" resultType="Integer">
+		SELECT SUM(BQUANTITY) FROM BNS WHERE BBUYCANCELDATE IS NULL AND PRODUCT_PCODE = #{param1}
+	</select>
+
+	<update id="productModify">
+		UPDATE PRODUCT SET PCATEGORY = #{param1}, PNAME = #{param2}, PPRICEDC = #{param3}, PPRODUCTEA = #{param4}, PSTATUS = #{param5} WHERE PCODE = #{param6}
+	</update>
+	
+	<insert id="upDateRegister">
+		INSERT INTO REGISTER (PRODUCT_PCODE, SELLER_SID, REDITDATE) 
+		VALUE ((SELECT PCODE FROM PRODUCT WHERE PCODE = #{param1}), 'ADMIN', NOW())
+	</insert>
+	
+	<select id="getSearchCount" resultType="Integer">
+		select COUNT(PCODE) from Product where pDelete = 0 ${param1} LIKE CONCAT('%', #{param2}, '%')
+	</select>
+
+
+
+</mapper>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
-<link rel="stylesheet" href="selectPage.css">
+<link rel="stylesheet" href="/market/resources/css/selectPage.css">
 </head>
 <script type="text/javascript">
 function addProduct(){
@@ -65,7 +65,7 @@ function addProduct(){
 	<div class="container_wrap">
 		<div class="container">
 			<div class="mainTable">	
-			<form action="insert.do" name = "productInsert" method="post" enctype="multipart/form-data">
+			<form action="insert" name = "productInsert" method="post" enctype="multipart/form-data">
 				<table style="margin: auto;">
 				<tr>
 					<th colspan="3">상품 등록</th>
@@ -153,6 +153,10 @@ function addProduct(){
 					</tr>
 				</table>
 			 </form>
+			 <%-- <form action="<c:url value='/market/resources/img'/>" enctype="multipart/form-data">
+			 	<input type = "file" name = "uploadFile" class="button buttonModify">
+			 	<input type = "submit" value="등록">
+			 </form> --%>
 			 </div>
 		 </div>
 	</div>

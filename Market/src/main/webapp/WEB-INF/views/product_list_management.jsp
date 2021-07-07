@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 관리</title>
-<link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="/market/resources/css/css.css">
 </head>
 <style>
 	.container_wrap {
@@ -26,13 +26,13 @@
 		<div class="container">
 			<h2 align="center">상품 관리</h2>
 			<br>
-			<form action="searchList.do" method = "post">
+			<form action="ProductSearchList" method = "post">
 				<table class="table">
 					<tr>
 						<td>상품현황</td>
-						<td>총 상품 <a href = "productlist.do">${SALESCOUNT }</a>건</td>
-						<td>판매중 <a href = "searchTure.do">${SALESTURE }</a>건</td>
-						<td>품절 <a href = "searchFalse.do">${SALESFALSE }</a>건</td>
+						<td>총 상품 <a href = "product_list_management">${SALESCOUNT }</a>건</td>
+						<td>판매중 <a href = "ProductTureList">${SALESTURE }</a>건</td>
+						<td>품절 <a href = "ProductFalseList">${SALESFALSE }</a>건</td>
 						<td></td>
 					</tr>
 					<tr>
@@ -66,7 +66,7 @@
 					<th>등록일</th>		
 				</tr>
 				<c:forEach items="${list}" var="dto">
-				<tr class="value" onclick="location.href='selectProduct.do?pCode=${dto.pCode }'"><!-- pCode, pCategory, pName, pPrice, pExpirationDate, pQuantity -->
+				<tr class="value" onclick="location.href='selectProduct_vlew?pCode=${dto.pCode }'"><!-- pCode, pCategory, pName, pPrice, pExpirationDate, pQuantity -->
 					<td >${dto.pCode }</td>
 					<td>${dto.pCategory }</td>
 					<td>${dto.pName }</td>
@@ -82,13 +82,13 @@
 			<table class="table">
 				<tr>
 					<td align="center">
-				        <a href="productlist.do"><button type="button" class="buttonNum buttonNum">◀◀</button></a>
-				        <a href="productlist.do?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">◀</button></a>
+				        <a href="product_list_management"><button type="button" class="buttonNum buttonNum">◀◀</button></a>
+				        <a href="product_list_management?pg=${FROMPAGE }"><button type="button" class="buttonNum buttonNum">◀</button></a>
 			        	<c:forEach items = "${pageCount }" var = "page" varStatus="ftp">
-			        		<a href="productlist.do?pg=${ftp.count}"><button type="button" class="buttonNum buttonNum">${ftp.count }</button></a>
+			        		<a href="product_list_management?pg=${ftp.count}"><button type="button" class="buttonNum buttonNum">${ftp.count }</button></a>
 			       		</c:forEach>
-				        <a href="productlist.do?pg=${TOPAGE }"><button type="button" class="buttonNum buttonNum">▶</button></a>
-				        <a href="productlist.do?pg=${ALLPAGE }"><button type="button" class="buttonNum buttonNum">▶▶</button></a>
+				        <a href="product_list_management?pg=${TOPAGE }"><button type="button" class="buttonNum buttonNum">▶</button></a>
+				        <a href="product_list_management?pg=${ALLPAGE }"><button type="button" class="buttonNum buttonNum">▶▶</button></a>
 					</td>
 				</tr>
 			</table>

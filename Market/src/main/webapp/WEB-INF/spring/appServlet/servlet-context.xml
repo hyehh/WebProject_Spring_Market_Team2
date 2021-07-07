@@ -65,9 +65,38 @@
 	<beans:bean name = "homeProductQ" class="com.springproject.market.command.BCommandHomeProductQ"></beans:bean>
 	<beans:bean name = "homeRegister_Q" class="com.springproject.market.command.BCommandHomeRegister_Q"></beans:bean>
 	
+	
+	<!-- seller command -->
+	<beans:bean name="insert" class="com.springproject.market.command.BCommandSellerAddProduct"></beans:bean>
+	<beans:bean name="DeliveryList" class="com.springproject.market.command.BCommandSellerDeliveryList"></beans:bean>
+	<beans:bean name="deliverySearchList" class="com.springproject.market.command.BCommandSellerDeliverySearch"></beans:bean>
+	<beans:bean name="DeliveryEnd" class="com.springproject.market.command.BCommandSellerDeliveryEnd"></beans:bean>
+	<beans:bean name="DeliveryING" class="com.springproject.market.command.BCommandSellerDeliveryING"></beans:bean>
+	<beans:bean name="selectOrderPage_view" class="com.springproject.market.command.BCommandSellerDeliverySelect"></beans:bean>
+	<beans:bean name="deliveryFor" class="com.springproject.market.command.BCommandSellerDeliveryFor"></beans:bean>
+	<beans:bean name="deliveryFinish" class="com.springproject.market.command.BCommandSellerDeliveryFinish"></beans:bean>
+	
+	<beans:bean name="sellerBuyList" class="com.springproject.market.command.BCommandSellerBuyList"></beans:bean>
+	<beans:bean name="buySearchList" class="com.springproject.market.command.BCommandSellerBuySearchList"></beans:bean>
+	<beans:bean name="buyTureList" class="com.springproject.market.command.BCommandSellerBuyTureList"></beans:bean>
+	<beans:bean name="buyCancelList" class="com.springproject.market.command.BCommandSellerBuyCancelList"></beans:bean>
+	<beans:bean name="selectBuy_vlew" class="com.springproject.market.command.BCommandSellerBuySelect"></beans:bean>
+	<beans:bean name="buyToDeliver" class="com.springproject.market.command.BCommandSellerBuyToDelivery"></beans:bean>
+	
+	<beans:bean name="QnAList" class="com.springproject.market.command.BCommandSellerQnAList"></beans:bean>
+	<beans:bean name="searchQnAList" class="com.springproject.market.command.BCommandSellerQnASearchList"></beans:bean>
+	<beans:bean name="QnATureList" class="com.springproject.market.command.BCommandSellerQnATureList"></beans:bean>
+	<beans:bean name="QnAFalseList" class="com.springproject.market.command.BCommandSellerQnAFalseList"></beans:bean>
+	<beans:bean name="selectQnAPage_view" class="com.springproject.market.command.BCommandSellerQnASelect"></beans:bean>
+	<beans:bean name="QnAAdd" class="com.springproject.market.command.BCommandSellerQnAAdd"></beans:bean>
+	<beans:bean name="QnAEdit" class="com.springproject.market.command.BCommandSellerQnAEdit"></beans:bean>
+	<beans:bean name="QnADelete" class="com.springproject.market.command.BCommandSellerQnADelete"></beans:bean>
+	
+	
+	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<beans:property name="url" value="jdbc:mysql://localhost:3306/Market?serverTimezone=Asia/Seoul&amp;characterEncoding=utf8&amp;useSSL=false"/>
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/Market?serverTimezone=Asia/Seoul&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowMultiQuery=true&amp;"/>
 		<beans:property name="username" value="root"/>
 		<beans:property name="password" value="qwer1234"/>
 	</beans:bean>

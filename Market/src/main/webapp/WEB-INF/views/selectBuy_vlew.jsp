@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 상세보기</title>
-<link rel="stylesheet" href="selectPage.css">
+<link rel="stylesheet" href="/market/resources/css/selectPage.css">
 </head>
 <style>
 .mainTable table:nth-child(2) tr td:nth-child(1),
@@ -90,9 +90,9 @@
 				<td><input type = "text" name = "bBuyCancelDate" readonly="readonly" value = "${selectBuy.bBuyCancelDate }"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="buyList.do"><button
+				<td colspan="2"><a href="sellerBuyList"><button
 								type="button" class="buttonModify buttonModify">목록으로가기</button></a>
-				<input type = "submit" value = "배송관리" formaction="buyToDeliver.do" class="buttonModify buttonModify" style="zoom: 1.0;">
+				<input type = "submit" value = "배송관리" formaction="buyToDeliver" class="buttonModify buttonModify" style="zoom: 1.0;">
 			</tr>
 		</table>
 	</form>
