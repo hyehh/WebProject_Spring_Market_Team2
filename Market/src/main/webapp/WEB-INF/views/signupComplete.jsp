@@ -31,7 +31,7 @@
 	<%@ include file="header.jsp" %>
 	<div class="container_wrap">
 		<div class="container">
-			<form action="Login_View.jsp" method="post">
+			<form action="login" method="post">
 				<!-- 2021.05.13 수훈 -->
 				<h3>회원가입이 완료되었습니다.</h3>
 				<input type="submit" value="로그인하기" size="16">	

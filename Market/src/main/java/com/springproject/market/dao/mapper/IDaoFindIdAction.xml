@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+	<mapper namespace="com.springproject.market.dao.IDaoFindIdAction">
+		
+		<select id="findcId" resultType="String">
+			SELECT CID FROM CUSTOMER WHERE CNAME= #{param1} AND CEMAIL= #{param2} 
+		</select>
+	
+	
+		<select id="findsId" resultType="String">
+			SELECT SID FROM SELLER WHERE SNAME= #{param1} AND SEMAIL= #{param2}
+		</select>
+	
+	</mapper>

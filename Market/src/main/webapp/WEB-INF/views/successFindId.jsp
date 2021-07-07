@@ -32,7 +32,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container_wrap">
 	<div class="container">
-		<form action="Login_View.jsp" method="post">
+		<form action="login" method="post">
 			<p style="font-size: 15pt">${findmsg }</p>
 			<input type="submit" value="로그인하기" size="16">	
 		</form>

@@ -7,10 +7,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class Dao_signUpCustomer {
+public class BDaosignupCustomer {
 	DataSource dataSource;
 	
-	public Dao_signUpCustomer() {
+	public BDaosignupCustomer() {
 		try {
 			/*javax.naming*/
 			Context context = new InitialContext();

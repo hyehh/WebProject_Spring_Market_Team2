@@ -9,4 +9,5 @@ public interface BCommand {
 	
 	void execute(HttpSession session, Model model, SqlSession sqlSession);
 
+	
 }

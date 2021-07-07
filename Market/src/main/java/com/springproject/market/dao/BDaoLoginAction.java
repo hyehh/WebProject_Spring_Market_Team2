@@ -10,11 +10,10 @@ import javax.sql.DataSource;
 
 import com.springproject.market.util.Share;
 
-public class Dao_findPwAction {
-
+public class BDaoLoginAction {
 DataSource dataSource;
 	
-	public Dao_findPwAction() {
+	public BDaoLoginAction() {
 		// TODO Auto-generated constructor stub
 		try {
 			Context context = new InitialContext();
@@ -27,82 +26,76 @@ DataSource dataSource;
 	
 	}
 	
-	
-	public int findcPw(String inputId, String inputName, String inputEmail, int findchk) {
+	public int customerLoginAction(String loginId,  String loginPw, int loginChk) {
 		
-
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select cPw from customer where cId= '" + inputId + 
-							"' and cName='" + inputName + "' and cEmail='" + inputEmail + "'";
+			String query = "select cId, cPw from customer where cId= '" + loginId + "' and cPw= '" + loginPw + "'";
 			
 			preparedStatement = connection.prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			
-			findchk = 0; // 찾기 결과 없음
-			
-			while (resultSet.next()) {
-				String findPw = resultSet.getString(1);
-				findchk = 1;
-				System.out.println(findPw);
-				Share.findPw = findPw;
+			loginChk = 0; // DB확인 결과 아이디 없음
+
+			while (resultSet.next()){
+				loginChk = 1;	// 아이디 있음
+				Share.userId = loginId;
+				Share.userPw = loginPw;
 			}
-			System.out.println("다오 테스트" + Share.findId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if (preparedStatement != null) preparedStatement.close();
 				if (connection!= null) connection.close();
+				if (resultSet != null) resultSet.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return findchk;
+		return loginChk;
 	}
 	
-		
 	
-	
-	public int findsPw(String inputId, String inputName, String inputEmail, int findchk) {
+	public int sellerLoginAction(String loginId,  String loginPw, int loginChk) {
 		
-
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select ㄴPw from seller where sId= '" + inputId + 
-					"' and sName='" + inputName + "' and sEmail='" + inputEmail + "'";
+			String query = "select sId, sPw from seller where sId= '" + loginId + "' and sPw= '" + loginPw + "'";
 			
 			preparedStatement = connection.prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
+			loginChk = 0; // DB확인 결과 아이디 없음
 			
-			findchk = 0; // 찾기 결과 없음
-			
-			while (resultSet.next()) {
-				String findPw = resultSet.getString(1);
-				findchk = 1;
-				System.out.println(findPw);
-				Share.findPw = findPw;
+			while (resultSet.next()){
+				loginChk = 1;
+				Share.userId = loginId;
+				Share.userPw = loginPw;
+
 			}
-			System.out.println("다오 테스트" + Share.findId);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if (preparedStatement != null) preparedStatement.close();
 				if (connection!= null) connection.close();
+				if (resultSet != null) resultSet.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return findchk;
+		return loginChk;
 	}
-	
 }

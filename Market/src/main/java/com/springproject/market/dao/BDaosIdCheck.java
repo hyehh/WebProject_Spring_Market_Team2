@@ -8,10 +8,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class Dao_IdCheck {
+public class BDaosIdCheck {
 	DataSource dataSource;
 	
-	public Dao_IdCheck() {
+	public BDaosIdCheck() {
 		// TODO Auto-generated constructor stub
 		try {
 			Context context = new InitialContext();

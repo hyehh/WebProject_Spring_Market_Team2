@@ -31,7 +31,7 @@ function chkValue() {
 function checkOnlyOne(element) {
 	  
 	  const checkboxes 
-	      = document.getElementsByName("animal");
+	      = document.getElementsByName("findUserType");
 	  
 	  checkboxes.forEach((cb) => {
 	    cb.checked = false;
@@ -43,7 +43,7 @@ function checkOnlyOne(element) {
 	
 <script type="text/javascript">
 	function findId(frm) {
-		frm.action='FindId.jsp'
+		frm.action='FindId'
 		frm.submit();
 		return true;
 	}
@@ -88,7 +88,7 @@ function checkOnlyOne(element) {
 				<br>
 				<h4>비밀번호 찾기</h4>
 				<hr>
-					<form name="findPwForm" id="findPwForm" action="findPw.do" method="post">
+					<form name="findPwForm" id="findPwForm" action="findPwAction" method="post">
 							<h5 style="text-align: center;"> 비밀번호 찾기 </h5>
 							<br>
 								<p style="line-height: 10pt">

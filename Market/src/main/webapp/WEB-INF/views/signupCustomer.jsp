@@ -48,7 +48,7 @@
 		doucument.signupCustomerForm.idDuplication.value ="idUncheck";
 	}
 	function opencIdChk(cId) {
-		var url = 'cIdCheck.jsp?cId='+ cId
+		var url = 'cIdCheck?cId='+ cId
 		window.open(url, 'chkFrom', 'width=500, height=300, resizable=no, scrollbars=no');
 	}
 
@@ -156,16 +156,6 @@ $(function(){
 })
 </script>
 
-<script type="text/javascript">
-	function inputcIdChk() {
-		document.signupCustomerForm.idDuplication.value ="idUncheck";
-	}
-	function opencIdChk(cId) {
-		var url = 'cIdCheck.jsp?cId='+ cId
-		window.open(url, 'chkFrom', 'width=500, height=300, resizable=no, scrollbars=no');
-	}
-</script>
-
 <style type="text/css">
 	label.error{
 		   display: inline-block;
@@ -181,7 +171,7 @@ $(function(){
 		margin-left: 70px;
 	}
 	#cPostalCode-error {
-		position: absolute;
+		position: absolute; 
 		margin-left: 100px;
 	}
 	#cAddress1-error {
@@ -329,7 +319,7 @@ $(function(){
 <jsp:include page="headerFormDelete.jsp"></jsp:include>
 <div class="wrap">
 	<div class="signup">
-		<form name="signupCustomerForm" id="signupCustomerForm" action="signupCustomer.do">
+		<form name="signupCustomerForm" id="signupCustomerForm" action="signupCustomerAction">
 			<h3>회원가입</h3>
 			<hr style="width: 80%;">
 			<div class="customerTb">
@@ -339,7 +329,7 @@ $(function(){
 					
 						<td>아이디*</td>
 						<td>
-							<input type="text" name="cId"	id="cId" placeholder="아이디를 입력하세요" onkeydown="inputcIdChk()">
+							<input type="text" name="cId" id="cId" placeholder="아이디를 입력하세요" onkeydown="inputcIdChk()">
 							<input type="button" name="Idcheck" value="중복체크" onclick=" opencIdChk(this.form.cId.value);">
 							<input type="hidden" name ="idDuplication" id="idDuplication" value="idUncheck" size="1">
 						</td>

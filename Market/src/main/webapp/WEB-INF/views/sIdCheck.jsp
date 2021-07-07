@@ -104,7 +104,7 @@ $(function(){
 	</center>
 </div>
 
-<form name="sIdchkForm" id="sIdchkForm" action="signupsIdCheck.do" method="post">
+<form name="sIdchkForm" id="sIdchkForm" action="signupsIdDupleCheck" method="post">
 <div>
 	<center>
 		

@@ -38,14 +38,14 @@ function checkOnlyOne(element) {
 		return true;
 	}
 	function findPw(frm) {
-		frm.action='FindPw.jsp';
+		frm.action='FindPw';
 		frm.submit();
 		return true;
 	}
 <!-- 버튼 액션 2 : 로그인으로 이동 -->
 
 	function backLogin(frm) {
-		frm.action='Login_View.jsp';
+		frm.action='login';
 		frm.submit();
 		return true;
 	}
@@ -89,7 +89,7 @@ function checkOnlyOne(element) {
 		<div class="container">
 		<h4>아이디 찾기</h4>
 		<hr>
-			<form name="findIdForm" id="findIdForm" action="findId.do" method="post">
+			<form name="findIdForm" id="findIdForm" action="findIdAction" method="post">
 				<h5 style="text-align: center;">회원아이디 찾기</h5>
 				<br>
 				<p style="line-height: 10pt">
@@ -105,7 +105,7 @@ function checkOnlyOne(element) {
 				<br>
 				<div style="font-size: 9pt">
 					<p style="line-height: 10pt">	
-						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원
+						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원
 						 &nbsp;&nbsp;&nbsp;
 						 <input type="checkbox" name="findUserType" value="판매회원" onclick='checkOnlyOne(this)' style="font-size: 9pt;"> 판매회원
 			 		</p>

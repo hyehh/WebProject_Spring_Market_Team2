@@ -15,7 +15,7 @@
 	var cId = '${cId}'
 	var cIdchk = '${cIdchk}';
 	var cIdchkMessage = '${cIdchkMessage}';
-	var returnUrl = 'cIdCheck.jsp?cId='+ cId + '&idDuplication' + idDuplication;
+	var returnUrl = 'cIdCheck?cId='+ cId + '&idDuplication' + idDuplication;
 	
 	alert(cIdchkMessage);
 	document.location.href =  returnUrl;

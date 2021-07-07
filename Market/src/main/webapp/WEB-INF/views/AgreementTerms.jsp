@@ -26,7 +26,7 @@
 			alert('약관동의에 체크해주세요.');
 			return false;
 		}else{
-			f.action="signupCustomer.jsp";
+			f.action="signupCustomer";
 			f.submit();
 			return true;
 		}
@@ -38,7 +38,7 @@
 			alert('약관동의에 체크해주세요.');
 			return false;
 		}else{
-			f.action="signupSeller.jsp";
+			f.action="signupSeller";
 			f.submit();
 			return true;
 		}

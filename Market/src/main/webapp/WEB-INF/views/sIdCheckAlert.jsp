@@ -13,7 +13,7 @@
 	var sId = '${sId}';
 	var sIdchk = '${sIdchk}';
 	var sIdchkMessage = '${sIdchkMessage}';
-	var returnUrl = 'sIdCheck.jsp?sId='+ sId + '&idDuplication=' + idDuplication;
+	var returnUrl = 'sIdCheck?sId='+ sId + '&idDuplication=' + idDuplication;
 	
 	alert(sIdchkMessage);
 	document.location.href =  returnUrl;

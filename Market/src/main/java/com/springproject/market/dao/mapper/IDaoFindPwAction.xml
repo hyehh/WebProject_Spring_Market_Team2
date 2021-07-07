@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.springproject.market.dao.IDaoFindPwAction">
+	
+	<select id="findcPw" resultType="String">
+			SELECT CPW FROM CUSTOMER WHERE CID= #{param1} AND CNAME= #{param2} AND CEMAIL= #{param3}
+		</select>
+	
+	
+		<select id="findsPw" resultType="String">
+			SELECT SPW FROM SELLER WHERE SID= #{param1} AND SNAME= #{param2} AND SEMAIL= #{param3}
+		</select>
+	</mapper>

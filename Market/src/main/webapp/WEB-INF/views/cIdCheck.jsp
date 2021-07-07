@@ -11,7 +11,7 @@
 <script type="text/javascript">
 		function cIdChk() {
 				var frm = document.cIdchkForm;
-				frm.action='signupcIdCheck.do';
+				frm.action='signupcIdDupleCheck';
 				frm.submit();
 				return true;
 			}

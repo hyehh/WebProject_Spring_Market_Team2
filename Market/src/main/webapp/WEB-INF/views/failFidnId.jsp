@@ -32,7 +32,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container_wrap">
 	<div class="container">
-		<form action="FindId.jsp" method="post">
+		<form action="FindId" method="post">
 			<p style="font-size: 15pt">${findmsg }</p>
 			<input type="submit" value="돌아가기" size="16">	
 		</form>

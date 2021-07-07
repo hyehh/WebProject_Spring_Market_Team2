@@ -10,10 +10,10 @@ import javax.sql.DataSource;
 
 import com.springproject.market.util.Share;
 
-public class Dao_findIdAction {
+public class BDaoFindIdAction {
 	DataSource dataSource;
 	
-	public Dao_findIdAction() {
+	public BDaoFindIdAction() {
 		// TODO Auto-generated constructor stub
 		try {
 			Context context = new InitialContext();
@@ -48,6 +48,9 @@ public class Dao_findIdAction {
 				System.out.println(findId);
 				Share.findId = findId;
 			}
+			if(findchk == 0) {
+				Share.findId = "none";
+			}
 			System.out.println("다오 테스트" + Share.findId);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,6 +84,9 @@ public class Dao_findIdAction {
 				String findId = resultSet.getString(1);
 				findchk = 1; // 찾기 결과 있음
 				Share.findId = findId;
+			}
+			if(findchk == 0) {
+				Share.findId = "none";
 			}
 			System.out.println("다오테스트" + Share.findId);
 		} catch (Exception e) {

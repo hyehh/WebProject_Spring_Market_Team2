@@ -55,7 +55,7 @@ function chkValue() {
 	<div class="wrap">
 		<div class="login">
 			<h3>Log-In</h3>
-				<form action="loginaction.do" method="post" name="loginActionForm">
+				<form action="loginAction" method="post" name="loginActionForm">
 						<div class="signup">
 							<div class="loginId">
 								<h4><i>ID</i></h4>
@@ -76,8 +76,8 @@ function chkValue() {
 									<input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'>판매회원
 									</div>
 									<div class="findAction">
-									<a href = "FindId.jsp"><i style="font-size: 3pt; ">아이디</i></a> 
-									<a href = "FindPw.jsp"><i style="font-size: 3pt; ">비밀번호 찾기</i></a>
+									<a href = "FindId"><i style="font-size: 3pt; ">아이디</i></a> 
+									<a href = "FindPw"><i style="font-size: 3pt; ">비밀번호 찾기</i></a>
 									</div>
 									<div class="submit">
 									<input type="button" value="login" onclick="chkValue()">
@@ -88,7 +88,7 @@ function chkValue() {
 									<br>
 				</form>
 				
-				<form action="AgreementTerms.jsp" method="post">
+				<form action="AgreementTerms" method="post">
 				<div class="gosignup">
 					<input type="submit" value="회원가입">
 				</div>

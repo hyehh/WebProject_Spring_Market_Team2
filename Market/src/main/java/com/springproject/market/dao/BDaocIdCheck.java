@@ -8,10 +8,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class Dao_cIdCheck {
+public class BDaocIdCheck {
+	
 	DataSource dataSource;
 	
-	public Dao_cIdCheck() {
+	public BDaocIdCheck() {
 		// TODO Auto-generated constructor stub
 		try {
 			Context context = new InitialContext();
@@ -24,7 +25,10 @@ public class Dao_cIdCheck {
 	
 	}
 	
-	
+//	//20210706 최수훈 
+//	//customerID 중복체크
+//	public int IdcheckCustomer(String cId, int cIdchk);
+//	
 public int IdcheckCustomer(String cId, int cIdchk) {
 		
 		Connection connection = null;

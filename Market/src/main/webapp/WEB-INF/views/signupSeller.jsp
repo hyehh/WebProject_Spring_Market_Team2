@@ -309,7 +309,7 @@ $(function(){
 		document.signupSellerForm.idDuplication.value ="idUncheck";
 	}
 	function opensIdChk(sId) {
-		var url = 'sIdCheck.jsp?sId='+ sId
+		var url = 'sIdCheck?sId='+ sId
 		window.open(url, 'chkFrom', 'width=500, height=300, resizable=no, scrollbars=no');
 	}
 </script>
@@ -318,7 +318,7 @@ $(function(){
 <jsp:include page="headerFormDelete.jsp"></jsp:include>
 <div class="wrap">
 	<div class="signup">
-		<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do">
+		<form name ="signupSellerForm" id="signupSellerForm" action="signupSellerAction">
 			<h3>회원가입</h3>
 			<hr>	
 				<div class="sellerTb">
