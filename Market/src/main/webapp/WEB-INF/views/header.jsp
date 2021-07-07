@@ -33,7 +33,7 @@
 		<div class="top">
 			<ul class="top_list">
 			<c:choose>
-				<c:when test="${empty userId}">
+				<c:when test="${empty Share.userId}">
 					<li><a href="login">로그인</a></li>
 					<li><a href="AgreementTerms">회원가입</a></li>
 				</c:when>
