@@ -9,19 +9,19 @@ public interface IDaoSellerProduct {
 
 	public void deleteRegister(String pCode);
 
-	public ArrayList<BDtoSellerProduct> productList(int start, int end);
+	public ArrayList<BDtoSellerProduct> productList(String id, int start, int end);
 
-	public int sales();
+	public int sales(String id);
 
-	public int salesTrue();
+	public int salesTrue(String id);
 
-	public int salesFalse();
+	public int salesFalse(String id);
 
-	public ArrayList<BDtoSellerProduct> searchProduct(String search, String searchtxt, int start, int end);
+	public ArrayList<BDtoSellerProduct> searchProduct(String id, String search, String searchtxt, int start, int end);
 
-	public ArrayList<BDtoSellerProduct> salesTureList(int start, int end);
+	public ArrayList<BDtoSellerProduct> salesTureList(String id, int start, int end);
 
-	public ArrayList<BDtoSellerProduct> salesFalseList(int start, int end);
+	public ArrayList<BDtoSellerProduct> salesFalseList(String id, int start, int end);
 
 	public BDtoSellerProduct selectProduct(String selecCode);
 

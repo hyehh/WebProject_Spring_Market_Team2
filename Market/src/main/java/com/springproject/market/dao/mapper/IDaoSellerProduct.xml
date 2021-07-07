@@ -15,34 +15,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="productList" resultType="com.springproject.market.dto.BDtoSellerProduct">
 		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE 
-		FROM PRODUCT WHERE PDELETE = 0 LIMIT #{param1}, #{param2}
+		FROM PRODUCT, Seller WHERE PDELETE = 0 and sId = #{param1} LIMIT #{param2}, #{param3}
 	</select>
 
 	<select id="sales" resultType="Integer">
-		SELECT COUNT(PCODE) FROM PRODUCT WHERE PDELETE = 0
+		SELECT count(pCode) FROM PRODUCT, Seller WHERE PDELETE = 0 and sId = #{param1}
 	</select>
 	
 	<select id="salesTrue" resultType="Integer">
-		SELECT COUNT(PCODE) FROM PRODUCT WHERE PDELETE = 0 AND PSTATUS = '판매중'
+		SELECT COUNT(PCODE) FROM PRODUCT, Seller WHERE PDELETE = 0 AND PSTATUS = '판매중' and sId = #{param1}
 	</select>
 	
 	<select id="salesFalse" resultType="Integer">
-		SELECT COUNT(PCODE) FROM PRODUCT WHERE PDELETE = 0 AND PSTATUS = '품절'
+		SELECT COUNT(PCODE) FROM PRODUCT, Seller WHERE PDELETE = 0 AND PSTATUS = '품절' and sId = #{param1}
 	</select>
 	
 	<select id="searchProduct" parameterType="String" resultType="com.springproject.market.dto.BDtoSellerProduct">
 		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PPRODUCTEA, PSTATUS, PADDDATE 
-		FROM PRODUCT WHERE PDELETE = 0 ${param1} LIKE CONCAT('%', #{param2}, '%') LIMIT #{param3}, #{param4}
+		FROM PRODUCT, Seller WHERE sId = #{param1} and PDELETE = 0 ${param2} LIKE CONCAT('%', #{param3}, '%') LIMIT #{param4}, #{param5}
 	</select>
 	
 	<select id="salesTureList" resultType="com.springproject.market.dto.BDtoSellerProduct">
-		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE FROM PRODUCT 
-		WHERE PDELETE = 0 AND PSTATUS = '판매중' LIMIT #{param1}, #{param2}
+		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE FROM PRODUCT, Seller 
+		WHERE sId = #{param1} and PDELETE = 0 AND PSTATUS = '판매중' LIMIT #{param2}, #{param3}
 	</select>
 
 	<select id="salesFalseList" resultType="com.springproject.market.dto.BDtoSellerProduct">
-		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE FROM PRODUCT 
-		WHERE PDELETE = 0 AND PSTATUS = '품절' LIMIT #{param1}, #{param2}
+		SELECT PCODE, PCATEGORY, PNAME, PPRICE, PPRICEDC, PEXPIRATIONDATE, PSTATUS, PADDDATE FROM PRODUCT, Seller
+		WHERE sId = #{param1} and PDELETE = 0 AND PSTATUS = '품절' LIMIT  #{param2}, #{param3}
 	</select>
 
 	<select id="selectProduct" resultType="com.springproject.market.dto.BDtoSellerProduct">

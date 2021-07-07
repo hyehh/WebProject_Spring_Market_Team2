@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.springproject.market.dto.BDtoSellerProduct;
+import com.springproject.market.util.Share;
 
 public class BDaoSellerProduct {
 	DataSource dataSource;
@@ -149,7 +150,7 @@ public class BDaoSellerProduct {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select * from Product where pDelete = 0";
+			String query = "select * from Product, Seller where pDelete = 0 and sId = '" + Share.userId + "'";
 			
 			
 //			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
@@ -187,7 +188,7 @@ public class BDaoSellerProduct {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select * from Product where pDelete = 0 and pStatus = '판매중'";
+			String query = "select * from Product, Seller where pDelete = 0 and pStatus = '판매중' and sId = '" + Share.userId + "'";
 			
 //			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
 //			value ('2000', 'food', '2021-05-13', '콜라', '1');
@@ -224,7 +225,7 @@ public class BDaoSellerProduct {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select * from Product where pDelete = 0 and pStatus = '품절'";
+			String query = "select * from Product, Seller where pDelete = 0 and pStatus = '품절' and sId = '" + Share.userId + "'";
 			
 //			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
 //			value ('2000', 'food', '2021-05-13', '콜라', '1');

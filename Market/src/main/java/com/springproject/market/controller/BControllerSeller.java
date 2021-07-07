@@ -16,6 +16,7 @@ import com.springproject.market.command.BCommand;
 import com.springproject.market.command.BCommandSellerStore;
 import com.springproject.market.dao.IDaoSellerProduct;
 import com.springproject.market.util.Pageing;
+import com.springproject.market.util.Share;
 
 @Controller
 public class BControllerSeller {
@@ -117,15 +118,15 @@ public class BControllerSeller {
 		IDaoSellerProduct dao = sqlSession.getMapper(IDaoSellerProduct.class);
 		Pageing pageing = new Pageing();
 
-		int count = dao.sales();
+		int count = dao.sales(Share.userId);
 		String strPg = request.getParameter("pg");
 
 		pageing.getFrom(count, strPg);
 
-		model.addAttribute("SALESCOUNT", dao.sales());
-		model.addAttribute("SALESTURE", dao.salesTrue());
-		model.addAttribute("SALESFALSE", dao.salesFalse());
-		model.addAttribute("list", dao.productList(pageing.from, pageing.to));
+		model.addAttribute("SALESCOUNT", dao.sales(Share.userId));
+		model.addAttribute("SALESTURE", dao.salesTrue(Share.userId));
+		model.addAttribute("SALESFALSE", dao.salesFalse(Share.userId));
+		model.addAttribute("list", dao.productList(Share.userId, pageing.from, pageing.to));
 
 		// 페이징 변수들
 		model.addAttribute("PG", pageing.pg); // 페이지넘버
@@ -148,10 +149,10 @@ public class BControllerSeller {
 
 		pageing.getFrom(count, strPg);
 
-		model.addAttribute("SALESCOUNT", dao.sales());
-		model.addAttribute("SALESTURE", dao.salesTrue());
-		model.addAttribute("SALESFALSE", dao.salesFalse());
-		model.addAttribute("list", dao.searchProduct(request.getParameter("search"), request.getParameter("searchTxt"),
+		model.addAttribute("SALESCOUNT", dao.sales(Share.userId));
+		model.addAttribute("SALESTURE", dao.salesTrue(Share.userId));
+		model.addAttribute("SALESFALSE", dao.salesFalse(Share.userId));
+		model.addAttribute("list", dao.searchProduct(Share.userId, request.getParameter("search"), request.getParameter("searchTxt"),
 				pageing.from, pageing.to));
 
 		// 페이징 변수들
@@ -169,15 +170,15 @@ public class BControllerSeller {
 		IDaoSellerProduct dao = sqlSession.getMapper(IDaoSellerProduct.class);
 		Pageing pageing = new Pageing();
 
-		int count = dao.salesTrue();
+		int count = dao.salesTrue(Share.userId);
 		String strPg = request.getParameter("pg");
 
 		pageing.getFrom(count, strPg);
 
-		model.addAttribute("SALESCOUNT", dao.sales());
-		model.addAttribute("SALESTURE", dao.salesTrue());
-		model.addAttribute("SALESFALSE", dao.salesFalse());
-		model.addAttribute("list", dao.salesTureList(pageing.from, pageing.to));
+		model.addAttribute("SALESCOUNT", dao.sales(Share.userId));
+		model.addAttribute("SALESTURE", dao.salesTrue(Share.userId));
+		model.addAttribute("SALESFALSE", dao.salesFalse(Share.userId));
+		model.addAttribute("list", dao.salesTureList(Share.userId, pageing.from, pageing.to));
 
 		// 페이징 변수들
 		model.addAttribute("PG", pageing.pg); // 페이지넘버
@@ -194,15 +195,15 @@ public class BControllerSeller {
 		IDaoSellerProduct dao = sqlSession.getMapper(IDaoSellerProduct.class);
 		Pageing pageing = new Pageing();
 
-		int count = dao.salesFalse();
+		int count = dao.salesFalse(Share.userId);
 		String strPg = request.getParameter("pg");
 
 		pageing.getFrom(count, strPg);
 
-		model.addAttribute("SALESCOUNT", dao.sales());
-		model.addAttribute("SALESTURE", dao.salesTrue());
-		model.addAttribute("SALESFALSE", dao.salesFalse());
-		model.addAttribute("list", dao.salesFalseList(pageing.from, pageing.to));
+		model.addAttribute("SALESCOUNT", dao.sales(Share.userId));
+		model.addAttribute("SALESTURE", dao.salesTrue(Share.userId));
+		model.addAttribute("SALESFALSE", dao.salesFalse(Share.userId));
+		model.addAttribute("list", dao.salesFalseList(Share.userId, pageing.from, pageing.to));
 
 		// 페이징 변수들
 		model.addAttribute("PG", pageing.pg); // 페이지넘버
