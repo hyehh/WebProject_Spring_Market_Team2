@@ -25,6 +25,25 @@ public class BControllerLogin {
 
 	//private JdbcTemplate template;
 	BCommand command = null;
+	private BCommand cIdDupleCheck = null;
+	private BCommand sIdDupleCheck = null;
+	private BCommand findIdAction = null;
+	private BCommand findPwAction = null;
+	private BCommand loginAction = null;
+	private BCommand signupCustomer = null;
+	private BCommand signupSeller = null;
+	
+	@Autowired
+	private void auto(BCommand cIdDupleCheck, BCommand sIdDupleCheck, BCommand findIdAction, BCommand findPwAction,
+				 BCommand loginAction, BCommand signupCustomer, BCommand signupSeller) {
+		this.cIdDupleCheck = cIdDupleCheck;
+		this.sIdDupleCheck = sIdDupleCheck;
+		this.findIdAction = findIdAction;
+		this.findPwAction = findPwAction;
+		this.loginAction = loginAction;
+		this.signupCustomer = signupCustomer;
+		this.signupSeller = signupSeller;
+	}
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -55,8 +74,7 @@ public class BControllerLogin {
 	public String signupcIdDupleCheck(HttpSession session, HttpServletRequest request, Model model) {
 //		BDaocIdCheck dao = sqlSession.getMapper(BDaocIdCheck.class);
 		model.addAttribute("request", request);
-		command = new BCommandcIdDupleCheck();
-		command.execute(session, model, sqlSession);
+		cIdDupleCheck.execute(session, model, sqlSession);
 		
 		request.setAttribute("cIdchk", session.getAttribute("cIdchk"));
 		request.setAttribute("cIdchkMessage", session.getAttribute("cIdchkMessage"));
@@ -74,8 +92,7 @@ public class BControllerLogin {
 	@RequestMapping("/signupCustomerAction")
 	public String signupCustomerAction(HttpSession session, HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new BCommandSignupCustomer();
-		command.execute(session, model, sqlSession);
+		signupCustomer.execute(session, model, sqlSession);
 		
 		return "signupComplete";
 	}
@@ -93,8 +110,7 @@ public class BControllerLogin {
 	@RequestMapping("/signupsIdDupleCheck")
 	public String signupsIdDupleCheck(HttpSession session, HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new BCommandsIdDupleCheck();
-		command.execute(session, model, sqlSession);
+		sIdDupleCheck.execute(session, model, sqlSession);
 		
 		request.setAttribute("sIdchk", session.getAttribute("sIdchk"));
 		request.setAttribute("sIdchkMessage", session.getAttribute("sIdchkMessage"));
@@ -112,8 +128,7 @@ public class BControllerLogin {
 	@RequestMapping("/signupSellerAction")
 	public String signupSellerAction( HttpSession session, HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new BCommandSignupSeller();
-		command.execute(session, model, sqlSession);
+		signupSeller.execute(session, model, sqlSession);
 		
 		return "signupComplete";
 	}
@@ -126,8 +141,7 @@ public class BControllerLogin {
 	@RequestMapping("/findIdAction")
 	public String findIdAction(HttpSession session, HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new BCommandFindIdAction();
-		command.execute(session, model, sqlSession);
+		findIdAction.execute(session, model, sqlSession);
 		
 		request.setAttribute("findmsg", (String)session.getAttribute("findmsg"));
 		request.setAttribute("RETURNJSP", session.getAttribute("RETURNJSP"));
@@ -136,6 +150,7 @@ public class BControllerLogin {
 		String returnJsp = (String) request.getAttribute("RETURNJSP");
 		System.out.println("return = " + returnJsp);
 		Share.findId ="";
+		
 		return returnJsp;
 	}
 	
@@ -147,8 +162,7 @@ public class BControllerLogin {
 	@RequestMapping("/findPwAction")
 	public String findPwAction(HttpSession session, HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new BCommandFindPwAction();
-		command.execute(session, model, sqlSession);
+		findPwAction.execute(session, model, sqlSession);
 		
 		request.setAttribute("findmsg", (String)session.getAttribute("findmsg"));
 		request.setAttribute("RETURNJSP", session.getAttribute("RETURNJSP"));
@@ -166,8 +180,7 @@ public class BControllerLogin {
 	@RequestMapping("/loginAction")
 	public String loginAction(HttpSession session, HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new BCommandLoginAction();
-		command.execute(session, model, sqlSession);
+		loginAction.execute(session, model, sqlSession);
 		
 		
 		System.out.println(session.getAttribute("userId"));
@@ -176,6 +189,15 @@ public class BControllerLogin {
 		System.out.println(returnJsp);
 		//Command에서 처리한 결과에 따라서 다른 viewPage로 연결
 		return returnJsp;
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, Model model) {
+		session.invalidate();
+		
+		Share.userId="";
+		Share.userPw="";
+		return "redirect:main";
 	}
 	
 	

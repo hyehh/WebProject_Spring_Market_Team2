@@ -57,6 +57,15 @@
 	<beans:bean name = "sellerInfoUpdate" class="com.springproject.market.command.BCommandMyPageSellerInfoUpdate"></beans:bean>
 	<beans:bean name = "sellerPwUpdate" class="com.springproject.market.command.BCommandMyPageSellerPwUpdate"></beans:bean>
 	<beans:bean name = "sellerSignOut" class="com.springproject.market.command.BCommandMyPageSellerSignOut"></beans:bean>
+	<beans:bean name = "cIdDupleCheck" class="com.springproject.market.command.BCommandcIdDupleCheck"></beans:bean>
+	<beans:bean name = "sIdDupleCheck" class="com.springproject.market.command.BCommandsIdDupleCheck"></beans:bean>
+	<beans:bean name = "findIdAction" class="com.springproject.market.command.BCommandFindIdAction"></beans:bean>
+	<beans:bean name = "findPwAction" class="com.springproject.market.command.BCommandFindPwAction"></beans:bean>
+	<beans:bean name = "loginAction" class="com.springproject.market.command.BCommandLoginAction"></beans:bean>
+	<beans:bean name = "signupCustomer" class="com.springproject.market.command.BCommandSignupCustomer"></beans:bean>
+	<beans:bean name = "signupSeller" class="com.springproject.market.command.BCommandSignupSeller"></beans:bean>
+	
+	
 	
 	
 	
