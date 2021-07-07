@@ -111,8 +111,10 @@ public class BControllerHome {
 	public String register_q_view(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("register_q_view()");
 		
+		String QnA_login = request.getParameter("QnA_login");
 		String pCode = request.getParameter("pCode");
 		model.addAttribute("pCode", pCode);
+		model.addAttribute("QnA_login", QnA_login);
 		
 		return "register_q_view";
 	}
