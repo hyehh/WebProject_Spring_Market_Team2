@@ -58,6 +58,13 @@
 	<beans:bean name = "sellerPwUpdate" class="com.springproject.market.command.BCommandMyPageSellerPwUpdate"></beans:bean>
 	<beans:bean name = "sellerSignOut" class="com.springproject.market.command.BCommandMyPageSellerSignOut"></beans:bean>
 	
+	
+	
+	
+	<beans:bean name = "homeProduct" class="com.springproject.market.command.BCommandHomeProduct"></beans:bean>
+	<beans:bean name = "homeProductQ" class="com.springproject.market.command.BCommandHomeProductQ"></beans:bean>
+	<beans:bean name = "homeRegister_Q" class="com.springproject.market.command.BCommandHomeRegister_Q"></beans:bean>
+	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<beans:property name="url" value="jdbc:mysql://localhost:3306/Market?serverTimezone=Asia/Seoul&amp;characterEncoding=utf8&amp;useSSL=false"/>
