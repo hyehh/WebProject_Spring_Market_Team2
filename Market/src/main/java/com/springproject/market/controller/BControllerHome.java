@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springproject.market.command.BCommand;
 import com.springproject.market.command.BCommandHomeProduct;
 import com.springproject.market.command.BCommandHomeProductQ;
+import com.springproject.market.command.BCommandHomeRegister_Q;
 import com.springproject.market.dao.BDaoHome;
 import com.springproject.market.dao.BDaoHomeBest;
 import com.springproject.market.dao.BDaoHomeCategory;
@@ -25,6 +27,18 @@ public class BControllerHome {
 	private SqlSession sqlSession;
 	
 	BCommand command = null;
+	
+	private BCommand commandHomeProduct = null;
+	private BCommand commandHomeProductQ = null;
+	private BCommand commandHomeRegister_Q = null;
+	
+	@Autowired
+	private void auto(BCommand homeProduct, BCommand homeProductQ, BCommand homeRegister_Q) {
+		// TODO Auto-generated method stub
+		this.commandHomeProduct = homeProduct;
+		this.commandHomeProductQ = homeProductQ;
+		this.commandHomeRegister_Q = homeRegister_Q;
+	}
 
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session) {
@@ -99,8 +113,7 @@ public class BControllerHome {
 		System.out.println("product()");
 		
 		model.addAttribute("request", request);
-		command = new BCommandHomeProduct();
-		command.execute(session, model, sqlSession);
+		commandHomeProduct.execute(session, model, sqlSession);
 		
 		return "product";
 	}
@@ -109,26 +122,26 @@ public class BControllerHome {
 	public String register_q_view(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("register_q_view()");
 		
+		String QnA_login = request.getParameter("QnA_login");
 		String pCode = request.getParameter("pCode");
 		model.addAttribute("pCode", pCode);
+		model.addAttribute("QnA_login", QnA_login);
 		
 		return "register_q_view";
 	}
 	
 	@RequestMapping("/register_q")
-	public String register_q(HttpServletRequest request, Model model, HttpSession session) {
+	public String register_q(MultipartHttpServletRequest multiRequest, Model model, HttpServletRequest request, HttpSession session) {
 		System.out.println("register_q()");
 		
-		BDaoHome dao = sqlSession.getMapper(BDaoHome.class);
+		HttpSession session2 = multiRequest.getSession();
 		
-		dao.registerQ(request.getParameter("pCode"), request.getParameter("cId"), request.getParameter("qTitle"), request.getParameter("qContent"));
-		Share.pCode = request.getParameter("pCode");
+		model.addAttribute("multiRequest", multiRequest);
+		commandHomeRegister_Q.execute(session2, model, sqlSession);
 		
 		model.addAttribute("request", request);
-		command = new BCommandHomeProductQ();
-		command.execute(session, model, sqlSession);
+		commandHomeProductQ.execute(session, model, sqlSession);
 		
 		return "product";
 	}
-
 }

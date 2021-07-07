@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springproject.market.command.BCommand;
 import com.springproject.market.command.BCommandHomeProductQ;
@@ -52,6 +53,82 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	BCommand command = null;
 	public static int from;
 	public static int to;
+	private BCommand commandMyPageAllBuy = null;
+	private BCommand commandMyPageAllBuyList = null;
+	private BCommand commandMyPageBuy = null;
+	private BCommand commandMyPageBuyConfirmCartDelete = null;
+	private BCommand commandMyPageBuyConfirmList = null;
+	private BCommand commandMyPageBuyer = null;
+	private BCommand commandMyPageBuyList = null;
+	private BCommand commandMyPageCancel = null;
+	private BCommand commandMyPageCancelList = null;
+	private BCommand commandMyPageCartAllDelete = null;
+	private BCommand commandMyPageCartCheck = null;
+	private BCommand commandMyPageCartDelete = null;
+	private BCommand commandMyPageCartInsert = null;
+	private BCommand commandMyPageCartList = null;
+	private BCommand commandMyPageCartUpdate = null;
+	private BCommand commandMyPageCustomerInfo = null;
+	private BCommand commandMyPageCustomerInfoUpdate = null;
+	private BCommand commandMyPageCustomerPwUpdate = null;
+	private BCommand commandMyPageCustomerSignOut = null;
+	private BCommand commandMyPageDeliveryInfo = null;
+	private BCommand commandMyPageOrderList = null;
+	private BCommand commandMyPageOrderListCancel = null;
+	private BCommand commandMyPagePCode = null;
+	private BCommand commandMyPageReviewBNum = null;
+	private BCommand commandMyPageReviewDelete = null;
+	private BCommand commandMyPageReviewDeleteList = null;
+	private BCommand commandMyPageReviewRegistration = null;
+	private BCommand commandMyPageReviewRegistrationList = null;
+	private BCommand commandMyPageSellerInfo = null;
+	private BCommand commandMyPageSellerInfoUpdate = null;
+	private BCommand commandMyPageSellerPwUpdate = null;
+	private BCommand commandMyPageSellerSignOut = null;
+	private BCommand commandHomeProductQ = null;
+	
+	@Autowired
+	public void auto(BCommand allBuy, BCommand allBuyList, BCommand buy, BCommand buyConfirmCartDelete, BCommand buyConfirmList, 
+			BCommand buyer, BCommand buyList, BCommand cancel, BCommand cancelList, BCommand cartAllDelete, BCommand cartCheck,
+			BCommand cartDelete, BCommand cartInsert, BCommand cartList, BCommand cartUpdate, BCommand customerInfo, 
+			BCommand customerInfoUpdate, BCommand customerPwUpdate, BCommand customerSignOut, BCommand deliveryInfo, 
+			BCommand orderList, BCommand orderListCancel, BCommand pCode, BCommand reviewBNum, BCommand reviewDelete,
+			BCommand reviewDeleteList, BCommand reviewRegistration, BCommand reviewRegistrationList, BCommand sellerInfo,
+			BCommand sellerInfoUpdate, BCommand sellerPwUpdate, BCommand sellerSignOut, BCommand homeProductQ) {
+		this.commandMyPageAllBuy = allBuy;
+		this.commandMyPageAllBuyList = allBuyList;
+		this.commandMyPageBuy = buy;
+		this.commandMyPageBuyConfirmCartDelete = buyConfirmCartDelete;
+		this.commandMyPageBuyConfirmList = buyConfirmList;
+		this.commandMyPageBuyer = buyer;
+		this.commandMyPageBuyList = buyList;
+		this.commandMyPageCancel = cancel;
+		this.commandMyPageCancelList = cancelList;
+		this.commandMyPageCartAllDelete = cartAllDelete;
+		this.commandMyPageCartCheck = cartCheck;
+		this.commandMyPageCartDelete = cartDelete;
+		this.commandMyPageCartInsert = cartInsert;
+		this.commandMyPageCartList = cartList;
+		this.commandMyPageCartUpdate = cartUpdate;
+		this.commandMyPageCustomerInfo = customerInfo;
+		this.commandMyPageCustomerInfoUpdate = customerInfoUpdate;
+		this.commandMyPageCustomerPwUpdate = customerPwUpdate;
+		this.commandMyPageCustomerSignOut = customerSignOut;
+		this.commandMyPageDeliveryInfo = deliveryInfo;
+		this.commandMyPageOrderList = orderList;
+		this.commandMyPageOrderListCancel = orderListCancel;
+		this.commandMyPagePCode = pCode;
+		this.commandMyPageReviewBNum = reviewBNum;
+		this.commandMyPageReviewDelete = reviewDelete;
+		this.commandMyPageReviewDeleteList = reviewDeleteList;
+		this.commandMyPageReviewRegistration = reviewRegistration;
+		this.commandMyPageReviewRegistrationList = reviewRegistrationList;
+		this.commandMyPageSellerInfo = sellerInfo;
+		this.commandMyPageSellerInfoUpdate = sellerInfoUpdate;
+		this.commandMyPageSellerPwUpdate = sellerPwUpdate;
+		this.commandMyPageSellerSignOut = sellerSignOut;
+		this.commandHomeProductQ = homeProductQ; 
+	}
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -59,8 +136,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	// 고객 회원정보 변경 버튼 눌렀을 때 DB에 있는 회원 정보 불러오기
 	@RequestMapping("/CustomerInfoUpdate_View")
 	public String CustomerInfoUpdate_View(HttpSession session, Model model) {
-		command = new BCommandMyPageCustomerInfo();
-		command.execute(session, model, sqlSession);
+		commandMyPageCustomerInfo.execute(session, model, sqlSession);
 		return "CustomerInfoUpdate_View";
 	}
 	
@@ -68,16 +144,14 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/CustomerInfoUpdate")
 	public String CustomerInfoUpdate(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageCustomerInfoUpdate();
-		command.execute(session, model, sqlSession);
+		commandMyPageCustomerInfoUpdate.execute(session, model, sqlSession);
 		return "redirect:CustomerInfoUpdate_View";
 	}
 	
 	// 판매자정보 변경 버튼 눌렀을 때 DB에 있는 판매자 정보 불러오기
 	@RequestMapping("/SellerInfoUpdate_View")
 	public String SellerInfoUpdate_View(HttpSession session, Model model) {
-		command = new BCommandMyPageSellerInfo();
-		command.execute(session, model, sqlSession);
+		commandMyPageSellerInfo.execute(session, model, sqlSession);
 		return "SellerInfoUpdate_View";
 	}
 	
@@ -85,8 +159,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/SellerInfoUpdate")
 	public String SellerInfoUpdate(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageSellerInfoUpdate();
-		command.execute(session, model, sqlSession);
+		commandMyPageSellerInfoUpdate.execute(session, model, sqlSession);
 		return "redirect:SellerInfoUpdate_View";
 	}
 	
@@ -100,8 +173,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/CustomerPwUpdate")
 	public String CustomerPwUpdate(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageCustomerPwUpdate();
-		command.execute(session, model, sqlSession);
+		commandMyPageCustomerPwUpdate.execute(session, model, sqlSession);
 		return "CustomerPwUpdate_View";
 	}
 	
@@ -115,8 +187,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/SellerPwUpdate")
 	public String SellerPwUpdate(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageSellerPwUpdate();
-		command.execute(session, model, sqlSession);
+		commandMyPageSellerPwUpdate.execute(session, model, sqlSession);
 		return "SellerPwUpdate_View";
 	}
 	
@@ -130,8 +201,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/CustomerSignOut")
 	public String CustomerSignOut(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageCustomerSignOut();
-		command.execute(session, model, sqlSession);
+		commandMyPageCustomerSignOut.execute(session, model, sqlSession);
 		session.invalidate();
 		return "redirect:main";
 	}
@@ -146,8 +216,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/SellerSignOut")
 	public String SellerSignOut(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageSellerSignOut();
-		command.execute(session, model, sqlSession);
+		commandMyPageSellerSignOut.execute(session, model, sqlSession);
 		session.invalidate();
 		return "redirect:main";
 	}
@@ -156,20 +225,17 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/CustomerCartInsert")
 	public String CustomerCartInsert(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageCartCheck();
-		command.execute(session, model, sqlSession);
+		commandMyPageCartCheck.execute(session, model, sqlSession);
 		
 		String checkMessage;
-		if((Integer)session.getAttribute("check") == 1) {
+		if((Integer)session.getAttribute("check") >= 1) {
 			checkMessage = "이미 장바구니에 있는 제품입니다. 선택하신 수량만큼 업데이트 되었습니다.";
 			session.setAttribute("checkMessage", checkMessage);
-			command = new BCommandMyPageCartUpdate();
-			command.execute(session, model, sqlSession);
+			commandMyPageCartUpdate.execute(session, model, sqlSession);
 		}else {
 			checkMessage = "장바구니에 담았습니다.";
 			session.setAttribute("checkMessage", checkMessage);
-			command = new BCommandMyPageCartInsert();
-			command.execute(session, model, sqlSession);
+			commandMyPageCartInsert.execute(session, model, sqlSession);
 		}
 		request.setAttribute("check", session.getAttribute("check"));
 		request.setAttribute("checkMessage", session.getAttribute("checkMessage"));
@@ -180,8 +246,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/productAgain")
 	public String productAgain(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandHomeProductQ();
-		command.execute(session, model, sqlSession);
+		commandHomeProductQ.execute(session, model, sqlSession);
 		return "product";
 	}
 	
@@ -189,16 +254,14 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/CustomerCart_View")
 	public String CustomerCart_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageCartList();
-		command.execute(session, model, sqlSession);
+		commandMyPageCartList.execute(session, model, sqlSession);
 		return "CustomerCart_View";
 	}
 	
 	// 장바구니 상품 전체 삭제
 	@RequestMapping("/CartAllDelete")
 	public String CartAllDelete(HttpSession session, Model model) {
-		command = new BCommandMyPageCartAllDelete();
-		command.execute(session, model, sqlSession);
+		commandMyPageCartAllDelete.execute(session, model, sqlSession);
 		return "redirect:CustomerCart_View";
 	}
 	
@@ -206,8 +269,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/CartDelete")
 	public String CartDelete(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageCartDelete();
-		command.execute(session, model, sqlSession);
+		commandMyPageCartDelete.execute(session, model, sqlSession);
 		return "redirect:CustomerCart_View";
 	}
 	
@@ -215,10 +277,8 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/Buy_View")
 	public String Buy_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageBuyList();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPageBuyer();
-		command.execute(session, model, sqlSession);
+		commandMyPageBuyList.execute(session, model, sqlSession);
+		commandMyPageBuyer.execute(session, model, sqlSession);
 		return "Buy_View";
 	}
 	
@@ -226,32 +286,25 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/Buy")
 	public String Buy(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageBuy();
-		command.execute(session, model, sqlSession);
+		commandMyPageBuy.execute(session, model, sqlSession);
 		return "redirect:BuyConfirm_View";
 	}
 	
 	// 주문 완료 창 보여주기
 	@RequestMapping("/BuyConfirm_View")
 	public String BuyConfirm_View(HttpSession session, Model model) {
-		command = new BCommandMyPageBuyConfirmList();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPageDeliveryInfo();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPagePCode();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPageBuyConfirmCartDelete();
-		command.execute(session, model, sqlSession);
+		commandMyPageBuyConfirmList.execute(session, model, sqlSession);
+		commandMyPageDeliveryInfo.execute(session, model, sqlSession);
+		commandMyPagePCode.execute(session, model, sqlSession);
+		commandMyPageBuyConfirmCartDelete.execute(session, model, sqlSession);
 		return "BuyConfirm_View";
 	}
 	
 	// 장바구니 전체 상품 구매하기 
 	@RequestMapping("/AllBuy_View")
 	public String AllBuy_View(HttpSession session, Model model) {
-		command = new BCommandMyPageAllBuyList();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPageBuyer();
-		command.execute(session, model, sqlSession);
+		commandMyPageAllBuyList.execute(session, model, sqlSession);
+		commandMyPageBuyer.execute(session, model, sqlSession);
 		return "AllBuy_View";
 	}
 	
@@ -259,32 +312,25 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/AllBuy")
 	public String AllBuy(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageAllBuy();
-		command.execute(session, model, sqlSession);
+		commandMyPageAllBuy.execute(session, model, sqlSession);
 		return "redirect:AllBuyConfirm_View";
 	}
 	
 	// 주문 완료 창 보여주기
 	@RequestMapping("/AllBuyConfirm_View")
 	public String AllBuyConfirm_View(HttpSession session, Model model) {
-		command = new BCommandMyPageBuyConfirmList();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPageDeliveryInfo();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPagePCode();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPageBuyConfirmCartDelete();
-		command.execute(session, model, sqlSession);
+		commandMyPageBuyConfirmList.execute(session, model, sqlSession);
+		commandMyPageDeliveryInfo.execute(session, model, sqlSession);
+		commandMyPagePCode.execute(session, model, sqlSession);
+		commandMyPageBuyConfirmCartDelete.execute(session, model, sqlSession);
 		return "AllBuyConfirm_View";
 	}
 	
 	// 주문 완료 창에서 주문 취소하기
 	@RequestMapping("/Cancel_View")
 	public String Cancel_View(HttpSession session, Model model) {
-		command = new BCommandMyPageCancel();
-		command.execute(session, model, sqlSession);
-		command = new BCommandMyPageBuyConfirmList();
-		command.execute(session, model, sqlSession);
+		commandMyPageCancel.execute(session, model, sqlSession);
+		commandMyPageBuyConfirmList.execute(session, model, sqlSession);
 		return "Cancel_View";
 	}
 	
@@ -292,8 +338,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/ReviewRegistrationList_View")
 	public String ReviewRegistrationList_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageReviewRegistrationList();
-		command.execute(session, model, sqlSession);
+		commandMyPageReviewRegistrationList.execute(session, model, sqlSession);
 		return "ReviewRegistrationList_View";
 	}
 	
@@ -301,17 +346,16 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/ReviewRegistration_View")
 	public String ReviewRegistration_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageReviewBNum();
-		command.execute(session, model, sqlSession);
+		commandMyPageReviewBNum.execute(session, model, sqlSession);
 		return "ReviewRegistration_View";
 	}
 	
 	// 리뷰 등록하기
 	@RequestMapping("/ReviewRegistration")
-	public String ReviewRegistration(HttpSession session, Model model, HttpServletRequest request) {
+	public String ReviewRegistration(Model model, MultipartHttpServletRequest request) {
+		HttpSession session = request.getSession();
 		model.addAttribute("request", request);
-		command = new BCommandMyPageReviewRegistration();
-		command.execute(session, model, sqlSession);
+		commandMyPageReviewRegistration.execute(session, model, sqlSession);
 		return "redirect:ReviewRegistrationList_View";
 	}
 	
@@ -319,8 +363,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/ReviewDelete_View")
 	public String ReviewDelete_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageReviewDeleteList();
-		command.execute(session, model, sqlSession);
+		commandMyPageReviewDeleteList.execute(session, model, sqlSession);
 		return "ReviewDelete_View";
 	}
 	
@@ -328,8 +371,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/ReviewDelete")
 	public String ReviewDelete(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageReviewDelete();
-		command.execute(session, model, sqlSession);
+		commandMyPageReviewDelete.execute(session, model, sqlSession);
 		return "redirect:ReviewDelete_View";
 	}
 	
@@ -337,8 +379,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/OrderList_View")
 	public String OrderList_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageOrderList();
-		command.execute(session, model, sqlSession);
+		commandMyPageOrderList.execute(session, model, sqlSession);
 		return "OrderList_View";
 	}
 	
@@ -346,8 +387,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("OrderListCancel_View")
 	public String OrderListCancel_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageOrderListCancel();
-		command.execute(session, model, sqlSession);
+		commandMyPageOrderListCancel.execute(session, model, sqlSession);
 		return "OrderListCancel_View";
 	}
 	
@@ -355,8 +395,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("OrderCancelList_View")
 	public String OrderCancelList_View(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandMyPageCancelList();
-		command.execute(session, model, sqlSession);
+		commandMyPageCancelList.execute(session, model, sqlSession);
 		return "OrderCancelList_View";
 	}
 

@@ -13,10 +13,10 @@ public interface BDaoHome {
 	public BDtoProduct productView(String strCode);
 	
 	// 문의 등록 - 이미지 없음
-	public void registerQ(String pCode, String cId, String qTitle, String qContent);
+//	public void registerQ(String pCode, String cId, String qTitle, String qContent);
 	
 	// 문의 등록 - 이미지 등록
-//	public void registerQ(int pCode, String cId, String qTitle, String qContent, String qFilePath);
+	public void registerQ(int pCode, String cId, String qTitle, String qContent, String qFilePath);
 	
 	// 문의 list 보여주기
 	public ArrayList<BDtoQnA> qnaList(String strCode, int from, int to);

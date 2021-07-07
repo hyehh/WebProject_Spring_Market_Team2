@@ -310,7 +310,14 @@
 				<div class="review_info">
 					<div>
 						<h4>리뷰 평점</h4>
-						<p>${review_info.star }</p>
+						<c:choose>
+							<c:when test="${review_info.star eq null }">
+								<p>0</p>
+							</c:when>
+							<c:otherwise>
+								<p>${review_info.star }</p>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div>
 						<h4>전체 리뷰 수</h4>
@@ -326,7 +333,7 @@
 							<p>${dtoReview.bReviewWriteDate }</p>
 						</td>
 						<td>
-							<img alt="${dtoReview.customer_cId }님의 리뷰 이미지" src="${dtoReview.rFilePath }" onerror="this.style.display='none'">
+							<img alt="${dtoReview.customer_cId }님의 리뷰 이미지" src="${pageContext.request.contextPath }/resources/reviewsave/${dtoReview.rFilePath }" onerror="this.style.display='none'">
 							<p>${dtoReview.bReviewContent }</p>
 						</td>
 					</tr>
@@ -430,8 +437,9 @@
 				        </a>
 				        <div class="uk-accordion-content">
 				        	<div class="qna_content">
-				        		<img alt="" src="${dtoQnA.qFilePath }">
+				        		<img alt="" src="${pageContext.request.contextPath }/resources/qnasave/${dtoQnA.qFilePath }">
 				        		<p>${dtoQnA.qContent }</p>
+					        	</p>
 				        	</div>
 				        	<div class="qna_content">${dtoQnA.aContent }</div>
 				        </div>
@@ -446,7 +454,16 @@
 						<!-- 이렇게 보일것입니다.        [◀◀] [◀] [1] [2] [3] [4]……[▶] [▶▶] -->
 							[<a href="product?pCode=${product_view.pCode }"> ◀◀ </a>]
 							<!-- 제일 왼쪽으로 가기. 그러므로 제일 먼저 나오기때문에 링크는 꼭 처음의 링크로 -->
-							[<a href="product?pCode=${product_view.pCode }&review_pg=${review_FROMPAGE -1 }&qna_pg=${QnA_FROMPAGE -1 }">◀</a>]
+							
+							<c:choose>
+					        	<c:when test="${review_FROMPAGE > 1 }">
+									[<a href="product?pCode=${product_view.pCode }&review_pg=${review_FROMPAGE -1 }&qna_pg=${QnA_FROMPAGE -1 }">◀</a>]
+					        	</c:when>
+					        	<c:otherwise>
+									[<a href="product?pCode=${product_view.pCode }&review_pg=${review_FROMPAGE }&qna_pg=${QnA_FROMPAGE }">◀</a>]
+					        	</c:otherwise>
+				        	</c:choose>
+							
 							<!-- 한단계 전으로 갈거라 링크에는 꼭 “ ?pg=“ 이거 써줘야합니다. -->
 							<%-- ${} 안에 들어오는 변수명은 command에서 구한 값입니다. --%>
 							<c:forEach items = "${QnA_pageCount }" var = "page" varStatus="ftp">
@@ -462,11 +479,21 @@
 					</tr>
 				</table>
 				
-				<form action="register_q_view">
-					<input type="hidden" name="pCode" value="${product_view.pCode }">
-					<input type="hidden" name="img" value="${product_view.pFilePath }">
-					<input type="submit" value="문의 등록" class="qnaBtn">
-				</form>
+				<c:choose>
+		        	<c:when test="${QnA_login eq null }">
+						<form action="Login_View" method="post">
+							<input type="submit" value="문의 등록" class="qnaBtn">
+						</form>
+		        	</c:when>
+		        	<c:otherwise>
+						<form action="register_q_view" method="post">
+							<input type="hidden" name="QnA_login" value="${QnA_login }">
+							<input type="hidden" name="pCode" value="${product_view.pCode }">
+							<input type="submit" value="문의 등록" class="qnaBtn">
+						</form>
+		        	</c:otherwise>
+	        	</c:choose>
+				
 			</div>
 		</div>
 		<!-- //상품문의 -->

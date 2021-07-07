@@ -5,8 +5,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BBuyDao;
-import com.springproject.market.dto.BBuyDto;
+import com.springproject.market.dao.BDaoMyPageBuy;
+import com.springproject.market.dto.BDtoMyPageBuy;
 
 public class BCommandMyPageDeliveryInfo implements BCommand { // 2021.07.06 조혜지 - 결제 완료 시 배송 정보 불러오는 command
 
@@ -19,8 +19,8 @@ public class BCommandMyPageDeliveryInfo implements BCommand { // 2021.07.06 조�
 		String cId = "jenny78";
 		String bNumber = (String)session.getAttribute("bNumber");
 		
-		BBuyDao dao = new BBuyDao();
-		BBuyDto dto = dao.deliveryinfo(cId, bNumber);
+		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
+		BDtoMyPageBuy dto = dao.deliveryinfoDao(cId, bNumber);
 		
 		model.addAttribute("DELIVERY", dto);
 	}

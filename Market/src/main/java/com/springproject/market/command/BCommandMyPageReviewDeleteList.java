@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BReviewDao;
-import com.springproject.market.dto.BReviewDto;
+import com.springproject.market.dao.BDaoMyPageReview;
+import com.springproject.market.dto.BDtoMyPageReview;
 
 public class BCommandMyPageReviewDeleteList implements BCommand { // 2021.07.06 조혜지 - 리뷰 작성된 목록 불러오는 command
 
@@ -25,7 +25,7 @@ public class BCommandMyPageReviewDeleteList implements BCommand { // 2021.07.06 
 //		String cId = Share.userId;	
 		String cId = "jenny78";	
 		
-		BReviewDao dao = new BReviewDao();
+		BDaoMyPageReview dao = sqlSession.getMapper(BDaoMyPageReview.class);
 		
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?
 
@@ -39,7 +39,7 @@ public class BCommandMyPageReviewDeleteList implements BCommand { // 2021.07.06 
 		System.out.println("jsp" + strPg);  // 확인용
 
 
-		int total = dao.reviewdel(cId); //총 게시물 수
+		int total = dao.reviewdelDao(cId); //총 게시물 수
 		// 여기서 total은 dao에서 뽑아낼 리스트의 개수가 몇개인지 count 확인해야해요
 		int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 //		int totalPage = total/rowSize + (total%rowSize==0?0:1);
@@ -76,7 +76,7 @@ public class BCommandMyPageReviewDeleteList implements BCommand { // 2021.07.06 
 			pageCount.add(i);
 		}
 
-		ArrayList<BReviewDto> dtos = dao.reviewDeleteList(cId, from, to);
+		ArrayList<BDtoMyPageReview> dtos = dao.reviewDeleteListDao(cId, from, to);
 		
 		request.setAttribute("REVIEWDEL", dtos);
 

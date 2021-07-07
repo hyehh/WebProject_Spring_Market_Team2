@@ -1,6 +1,6 @@
 package com.springproject.market.dto;
 
-public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
+public class BDtoMyPageBuy { // 2021.07.06 조혜지 - 주문서 작성/결제 dto
 	
 	// Field
 	int datediff;
@@ -26,18 +26,18 @@ public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
 	String bRecContent;
 	
 	// Constructor
-	public BBuyDto() {
+	public BDtoMyPageBuy() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BBuyDto(String cName, String cTel, String cEmail) {
+	public BDtoMyPageBuy(String cName, String cTel, String cEmail) {
 		super();
 		this.cName = cName;
 		this.cTel = cTel;
 		this.cEmail = cEmail;
 	}
 
-	public BBuyDto(int datediff, String bNumber, String bBuyDate, String pName, int bQuantity, String dCondition) {
+	public BDtoMyPageBuy(int datediff, String bNumber, String bBuyDate, String pName, int bQuantity, String dCondition) {
 		super();
 		this.datediff = datediff;
 		this.bNumber = bNumber;
@@ -47,7 +47,7 @@ public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
 		this.dCondition = dCondition;
 	}
 
-	public BBuyDto(String pName, int wQuantity, String pExpirationDate, int pPriceDC, int pCode) {
+	public BDtoMyPageBuy(String pName, int wQuantity, String pExpirationDate, int pPriceDC, int pCode) {
 		super();
 		this.pName = pName;
 		this.wQuantity = wQuantity;
@@ -56,12 +56,12 @@ public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
 		this.pCode = pCode;
 	}
 
-	public BBuyDto(String bNumber) {
+	public BDtoMyPageBuy(String bNumber) {
 		super();
 		this.bNumber = bNumber;
 	}
 
-	public BBuyDto(String bNumber, String pName, String pExpirationDate, int pPriceDC, int bQuantity) {
+	public BDtoMyPageBuy(String bNumber, String pName, String pExpirationDate, int pPriceDC, int bQuantity) {
 		super();
 		this.bNumber = bNumber;
 		this.pName = pName;
@@ -70,7 +70,7 @@ public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
 		this.bQuantity = bQuantity;
 	}
 
-	public BBuyDto(String bRecName, String bRecPostalCode, String bRecAddress1, String bRecAddress2, String bRecTel,
+	public BDtoMyPageBuy(String bRecName, String bRecPostalCode, String bRecAddress1, String bRecAddress2, String bRecTel,
 			String bRecContent) {
 		super();
 		this.bRecName = bRecName;
@@ -81,7 +81,7 @@ public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
 		this.bRecContent = bRecContent;
 	}
 
-	public BBuyDto(String pName, int wQuantity, String pExpirationDate, int pPriceDC, int wId, int pCode) {
+	public BDtoMyPageBuy(String pName, int wQuantity, String pExpirationDate, int pPriceDC, int wId, int pCode) {
 		super();
 		this.pName = pName;
 		this.wQuantity = wQuantity;
@@ -91,7 +91,7 @@ public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
 		this.pCode = pCode;
 	}
 
-	public BBuyDto(String bNumber, String bBuyDate, String bBuyCancelDate, String pName, int bQuantity) {
+	public BDtoMyPageBuy(String bNumber, String bBuyDate, String bBuyCancelDate, String pName, int bQuantity) {
 		super();
 		this.bNumber = bNumber;
 		this.bBuyDate = bBuyDate;
@@ -100,7 +100,7 @@ public class BBuyDto { // 2021.05.16 조혜지 - 주문서 작성/결제 dto
 		this.bQuantity = bQuantity;
 	}
 
-	public BBuyDto(int pCode) {
+	public BDtoMyPageBuy(int pCode) {
 		super();
 		this.pCode = pCode;
 	}

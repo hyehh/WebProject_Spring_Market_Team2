@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BBuyDao;
-import com.springproject.market.dto.BBuyDto;
+import com.springproject.market.dao.BDaoMyPageBuy;
+import com.springproject.market.dto.BDtoMyPageBuy;
 
 public class BCommandMyPageOrderList implements BCommand { // 2021.07.06 조혜지 - 주문 완료한 목록 불러오는 command
 
@@ -25,7 +25,7 @@ public class BCommandMyPageOrderList implements BCommand { // 2021.07.06 조혜�
 //		String cId = Share.userId;	
 		String cId = "jenny78";	
 		
-		BBuyDao dao = new BBuyDao();
+		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
 		
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?
 
@@ -39,7 +39,7 @@ public class BCommandMyPageOrderList implements BCommand { // 2021.07.06 조혜�
 		System.out.println("jsp" + strPg);  // 확인용
 
 
-		int total = dao.order(cId); //총 게시물 수
+		int total = dao.orderDao(cId); //총 게시물 수
 		// 여기서 total은 dao에서 뽑아낼 리스트의 개수가 몇개인지 count 확인해야해요
 		int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 //		int totalPage = total/rowSize + (total%rowSize==0?0:1);
@@ -76,9 +76,9 @@ public class BCommandMyPageOrderList implements BCommand { // 2021.07.06 조혜�
 			pageCount.add(i);
 		}
 
-		ArrayList<BBuyDto> dtos = dao.orderList(cId, from, to);
+		ArrayList<BDtoMyPageBuy> dtos = dao.orderListDao(cId, from, to);
 		
-		request.setAttribute("ORDER", dtos);
+		model.addAttribute("ORDER", dtos);
 
 
 		// 페이징 변수들 -> jsp로 넘겨줘야하기에 세션에 저장합니다.

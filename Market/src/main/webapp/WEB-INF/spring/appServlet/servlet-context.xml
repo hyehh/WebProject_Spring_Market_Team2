@@ -25,6 +25,46 @@
 	
 	<context:component-scan base-package="com.springproject.market" />
 	
+	<beans:bean name = "allBuy" class="com.springproject.market.command.BCommandMyPageAllBuy"></beans:bean>
+	<beans:bean name = "allBuyList" class="com.springproject.market.command.BCommandMyPageAllBuyList"></beans:bean>
+	<beans:bean name = "buy" class="com.springproject.market.command.BCommandMyPageBuy"></beans:bean>
+	<beans:bean name = "buyConfirmCartDelete" class="com.springproject.market.command.BCommandMyPageBuyConfirmCartDelete"></beans:bean>
+	<beans:bean name = "buyConfirmList" class="com.springproject.market.command.BCommandMyPageBuyConfirmList"></beans:bean>
+	<beans:bean name = "buyer" class="com.springproject.market.command.BCommandMyPageBuyer"></beans:bean>
+	<beans:bean name = "buyList" class="com.springproject.market.command.BCommandMyPageBuyList"></beans:bean>
+	<beans:bean name = "cancel" class="com.springproject.market.command.BCommandMyPageCancel"></beans:bean>
+	<beans:bean name = "cancelList" class="com.springproject.market.command.BCommandMyPageCancelList"></beans:bean>
+	<beans:bean name = "cartAllDelete" class="com.springproject.market.command.BCommandMyPageCartAllDelete"></beans:bean>
+	<beans:bean name = "cartCheck" class="com.springproject.market.command.BCommandMyPageCartCheck"></beans:bean>
+	<beans:bean name = "cartDelete" class="com.springproject.market.command.BCommandMyPageCartDelete"></beans:bean>
+	<beans:bean name = "cartInsert" class="com.springproject.market.command.BCommandMyPageCartInsert"></beans:bean>
+	<beans:bean name = "cartList" class="com.springproject.market.command.BCommandMyPageCartList"></beans:bean>
+	<beans:bean name = "cartUpdate" class="com.springproject.market.command.BCommandMyPageCartUpdate"></beans:bean>
+	<beans:bean name = "customerInfo" class="com.springproject.market.command.BCommandMyPageCustomerInfo"></beans:bean>
+	<beans:bean name = "customerInfoUpdate" class="com.springproject.market.command.BCommandMyPageCustomerInfoUpdate"></beans:bean>
+	<beans:bean name = "customerPwUpdate" class="com.springproject.market.command.BCommandMyPageCustomerPwUpdate"></beans:bean>
+	<beans:bean name = "customerSignOut" class="com.springproject.market.command.BCommandMyPageCustomerSignOut"></beans:bean>
+	<beans:bean name = "deliveryInfo" class="com.springproject.market.command.BCommandMyPageDeliveryInfo"></beans:bean>
+	<beans:bean name = "orderList" class="com.springproject.market.command.BCommandMyPageOrderList"></beans:bean>
+	<beans:bean name = "orderListCancel" class="com.springproject.market.command.BCommandMyPageOrderListCancel"></beans:bean>
+	<beans:bean name = "pCode" class="com.springproject.market.command.BCommandMyPagePCode"></beans:bean>
+	<beans:bean name = "reviewBNum" class="com.springproject.market.command.BCommandMyPageReviewBNum"></beans:bean>
+	<beans:bean name = "reviewDelete" class="com.springproject.market.command.BCommandMyPageReviewDelete"></beans:bean>
+	<beans:bean name = "reviewDeleteList" class="com.springproject.market.command.BCommandMyPageReviewDeleteList"></beans:bean>
+	<beans:bean name = "reviewRegistration" class="com.springproject.market.command.BCommandMyPageReviewRegistration"></beans:bean>
+	<beans:bean name = "reviewRegistrationList" class="com.springproject.market.command.BCommandMyPageReviewRegistrationList"></beans:bean>
+	<beans:bean name = "sellerInfo" class="com.springproject.market.command.BCommandMyPageSellerInfo"></beans:bean>
+	<beans:bean name = "sellerInfoUpdate" class="com.springproject.market.command.BCommandMyPageSellerInfoUpdate"></beans:bean>
+	<beans:bean name = "sellerPwUpdate" class="com.springproject.market.command.BCommandMyPageSellerPwUpdate"></beans:bean>
+	<beans:bean name = "sellerSignOut" class="com.springproject.market.command.BCommandMyPageSellerSignOut"></beans:bean>
+	
+	
+	
+	
+	<beans:bean name = "homeProduct" class="com.springproject.market.command.BCommandHomeProduct"></beans:bean>
+	<beans:bean name = "homeProductQ" class="com.springproject.market.command.BCommandHomeProductQ"></beans:bean>
+	<beans:bean name = "homeRegister_Q" class="com.springproject.market.command.BCommandHomeRegister_Q"></beans:bean>
+	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<beans:property name="url" value="jdbc:mysql://localhost:3306/Market?serverTimezone=Asia/Seoul&amp;characterEncoding=utf8&amp;useSSL=false"/>
@@ -32,10 +72,6 @@
 		<beans:property name="password" value="qwer1234"/>
 	</beans:bean>
 	<!-- 위에서 name=변수이름 value = 데이터 값    -->
-
-   	<beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
-      	<beans:property name="dataSource" ref="dataSource"></beans:property>
-   	</beans:bean>
 	
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
@@ -45,4 +81,12 @@
 	<beans:bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
 	</beans:bean>
+	
+	<!--multipart - fileupload  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <beans:property name="maxUploadSize" value="200000000" />
+	    <beans:property name="maxInMemorySize" value="200000000" />
+	    <beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
+	
 </beans:beans>

@@ -1,6 +1,7 @@
 package com.springproject.market.command;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.Random;
@@ -11,9 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springproject.market.dao.BBuyDao;
+import com.springproject.market.dao.BDaoMyPageBuy;
+import com.springproject.market.dto.BDtoMyPageBuy;
 
-public class BCommandMyPageBuy implements BCommand { // 2021.07.06 조혜지 - 선택 상품 주문 선택 시 주문서 작성/결제 창에서 주문 및 결제 정보 insert하는 command
+public class BCommandMyPageBuy implements BCommand { // 2021.07.07 조혜지 - 선택 상품 주문 선택 시 주문서 작성/결제 창에서 주문 및 결제 정보 insert하는 command
 
 	@Override
 	public void execute(HttpSession session, Model model, SqlSession sqlSession) {
@@ -53,8 +55,16 @@ public class BCommandMyPageBuy implements BCommand { // 2021.07.06 조혜지 - �
 //		String cId = Share.userId;	
 		String cId = "jenny78";	
 		
-		BBuyDao dao = new BBuyDao();		
-		dao.insert(cId, bNumber, bRecName, bRecPostalCode, bRecAddress1, bRecAddress2, bRecTel, bRecContent, session);
-	}
+		ArrayList<BDtoMyPageBuy> list = (ArrayList)session.getAttribute("BUY");
+		int temp = (Integer) session.getAttribute("size");
+		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
+		
+		for(int i=0; i< temp; i++) {
+			dao.insertBnSDao(cId, list.get(i).getwQuantity(), list.get(i).getpCode(), bNumber);
+			dao.insertDeliveryDao(cId, list.get(i).getpCode(), bNumber);
+		}
+		
+		dao.insertReceiverDao(bRecName, bRecPostalCode, bRecAddress1, bRecAddress2, bRecTel, bRecContent, cId, bNumber);
 
+	}
 }

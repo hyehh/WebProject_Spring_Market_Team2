@@ -49,7 +49,7 @@
 		
 		<!-- 로고 -->
 		<div class="logo" style="height: 305px;">
-			<a href="main.do"><img alt="떨이마켓 로고" src="resources/img/logoImg.png"></a>
+			<a href="main"><img alt="떨이마켓 로고" src="resources/img/logoImg.png"></a>
 		</div>
 		<!-- //로고 -->
 		
