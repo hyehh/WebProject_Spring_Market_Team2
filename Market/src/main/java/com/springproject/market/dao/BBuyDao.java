@@ -10,6 +10,8 @@ import javax.naming.InitialContext;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.springproject.market.dto.BDtoMyPageBuy;
+
 public class BBuyDao { // 2021.05.16 조혜지 - 주문자 정보 불러오기 위해 DB에 있는 정보 불러오는 dao buyerInfo
 					   // 2021.05.17 조혜지 - 장바구니에서 상품 주문 버튼 클릭 시 선택한 상품만 DB에서 불러오는 dao customerBuyList
    					   // 2021.05.18 조혜지 - 주문목록/배송조회 주문한 상품 리스트 불러오는 dao orderList
@@ -20,23 +22,23 @@ public class BBuyDao { // 2021.05.16 조혜지 - 주문자 정보 불러오기 �
 					   // 2021.05.23 조혜지 - 주문 취소한 상품 리스트 불러오는 dao cancelList, 주문취소목록 페이지 분할을 위해 몇 줄인지 세는 dao cancel
 					   // 2021.05.24 조혜지 - 장바구니에서 구매한 제품의 pCode 구하는 dao pCodeList, 장바구니에서 구매한 제품 삭제하는 dao buyConfirmCartDelete
 	
-	// Field
-	DataSource dataSource;
-	
-	// Constructor
-	public BBuyDao() {
-		// TODO Auto-generated constructor stub
-		try {
-			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Market");
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
-	
-	// Method
-	// 2021.05.16 조혜지 - 주문자 정보 불러오기 위해 DB에 있는 정보 불러오는 method
+//	// Field
+//	DataSource dataSource;
+//	
+//	// Constructor
+//	public BBuyDao() {
+//		// TODO Auto-generated constructor stub
+//		try {
+//			Context context = new InitialContext();
+//			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Market");
+//		}catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	// Method
+//	// 2021.05.16 조혜지 - 주문자 정보 불러오기 위해 DB에 있는 정보 불러오는 method
 //	public BBuyDto buyerInfo(String strcId){
 //		BBuyDto dto = null;
 //		// 전역번수 쓰려고 여기에 만듬		
@@ -88,7 +90,7 @@ public class BBuyDao { // 2021.05.16 조혜지 - 주문자 정보 불러오기 �
 //		Connection connection = null;
 //		PreparedStatement preparedStatement = null;
 //		String queryA = "insert into BnS (Customer_cId, bQuantity, Product_pCode, bNumber, bBuyDate) values (?,?,?,?,curdate())";
-//		ArrayList<BBuyDto> list = (ArrayList)session.getAttribute("BUY");
+//		ArrayList<BDtoMyPageBuy> list = (ArrayList)session.getAttribute("BUY");
 //		int temp1 = (Integer) session.getAttribute("size");
 //
 //		for(int i=0; i< temp1; i++) {
@@ -185,7 +187,7 @@ public class BBuyDao { // 2021.05.16 조혜지 - 주문자 정보 불러오기 �
 //		Connection connection = null;
 //		PreparedStatement preparedStatement = null;
 //		String queryA = "insert into BnS (Customer_cId, bQuantity, Product_pCode, bNumber, bBuyDate) values (?,?,?,?,curdate())";
-//		ArrayList<BBuyDto> list = (ArrayList)session.getAttribute("CARTBUY");
+//		ArrayList<BDtoMyPageBuy> list = (ArrayList)session.getAttribute("CARTBUY");
 //		int temp3 = (Integer) session.getAttribute("asize");
 //
 //		for(int i=0; i<temp3; i++) {

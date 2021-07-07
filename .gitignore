@@ -175,3 +175,5 @@ Servers/Tomcat v8.5 Server at localhost-config/context.xml
 Servers/Tomcat v8.5 Server at localhost-config/server.xml
 Servers/Tomcat v8.5 Server at localhost-config/tomcat-users.xml
 Servers/Tomcat v8.5 Server at localhost-config/web.xml
+Market/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+Market/target/m2e-wtp/web-resources/META-INF/maven/com.springproject/market/pom.properties

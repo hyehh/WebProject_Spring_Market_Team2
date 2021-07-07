@@ -22,37 +22,41 @@
 		SELECT CNAME, CTEL, CEMAIL FROM CUSTOMER WHERE CID = #{param1}
 	</select>
 	
-	<!-- 2021.07.06 조혜지 - 선택 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method -->
-<!-- 	<insert id="insertDao">
+	<!-- 2021.07.06 조혜지 - 선택 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS DB에 insert하는 method -->
+ 	<insert id="insertBnSDao">
 		INSERT INTO BNS (CUSTOMER_CID, BQUANTITY, PRODUCT_PCODE, BNUMBER, BBUYDATE) 
 		VALUES (#{param1},#{param2},#{param3},#{param4},CURDATE())
 	</insert>
 	
-	<insert id="insertDao">
+	<!-- 2021.07.06 조혜지 - 선택 상품 주문 선택 후, 결제하기 버튼 클릭시 Receiver DB에 insert하는 method -->
+	<insert id="insertReceiverDao">
 		INSERT INTO RECEIVER (BRECNAME, BRECPOSTALCODE, BRECADDRESS1, BRECADDRESS2, BRECTEL, BRECCONTENT, CUSTOMER_CID, BNUMBER) 
 		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
 	</insert>
 	
-	<insert id="insertDao">
+	<!-- 2021.07.06 조혜지 - 선택 상품 주문 선택 후, 결제하기 버튼 클릭시 Delivery DB에 insert하는 method -->
+	<insert id="insertDeliveryDao">
 		INSERT INTO DELIVERY (CUSTOMER_CID, PRODUCT_PCODE, BNUMBER) 
 		VALUES (#{param1},#{param2},#{param3})
-	</insert> -->
+	</insert> 
 	
-	<!-- 2021.07.06 조혜지 - 전체 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS와 Receiver DB에 insert하는 method -->
-<!-- 	<insert id="allInsertDao">
+	<!-- 2021.07.06 조혜지 - 전체 상품 주문 선택 후, 결제하기 버튼 클릭시 BnS DB에 insert하는 method -->
+ 	<insert id="allInsertBnSDao">
 		INSERT INTO BNS (CUSTOMER_CID, BQUANTITY, PRODUCT_PCODE, BNUMBER, BBUYDATE) 
 		VALUES (#{param1},#{param2},#{param3},#{param4},CURDATE())
 	</insert>
-	
-	<insert id="allInsertDao">
+
+	<!-- 2021.07.06 조혜지 - 전체 상품 주문 선택 후, 결제하기 버튼 클릭시 Receiver DB에 insert하는 method -->	
+	<insert id="allInsertReceiverDao">
 		INSERT INTO RECEIVER (BRECNAME, BRECPOSTALCODE, BRECADDRESS1, BRECADDRESS2, BRECTEL, BRECCONTENT, CUSTOMER_CID, BNUMBER) 
 		VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
 	</insert>
 	
-	<insert id="allInsertDao">
+	<!-- 2021.07.06 조혜지 - 전체 상품 주문 선택 후, 결제하기 버튼 클릭시 Delivery DB에 insert하는 method -->
+	<insert id="allInsertDeliveryDao">
 		INSERT INTO DELIVERY (CUSTOMER_CID, PRODUCT_PCODE, BNUMBER) 
 		VALUES (#{param1},#{param2},#{param3})
-	</insert> -->
+	</insert> 
 	
 	<!-- 2021.07.06 조혜지 - 결제 완료 시 주문 번호 불러오는 method -->
 	<select id="bNumberDao" resultType="String">
@@ -65,9 +69,9 @@
 	</select>
 	
 	<!-- 2021.07.06 조혜지 - 장바구니에서 구매한 제품 삭제하는 method -->
-<!-- 	<delete id="buyConfirmCartDeleteDao">
+ 	<delete id="buyConfirmCartDeleteDao">
 		DELETE FROM WISHLIST WHERE CUSTOMER_CID = #{param1} AND PRODUCT_PCODE = #{param2}
-	</delete> -->
+	</delete> 
 	
 	<!-- 2021.07.06 조혜지 - 결제 완료 시 주문한 상품 리스트 불러오는 method -->
 	<select id="buyConfirmListDao" resultType="com.springproject.market.dto.BDtoMyPageBuy">
