@@ -13,6 +13,7 @@ import com.springproject.market.dao.BDaoHome;
 import com.springproject.market.dto.BDtoProduct;
 import com.springproject.market.dto.BDtoQnA;
 import com.springproject.market.dto.BDtoReview;
+import com.springproject.market.util.Share;
 
 public class BCommandHomeProduct implements BCommand {
 
@@ -87,12 +88,11 @@ public class BCommandHomeProduct implements BCommand {
 		
 		model.addAttribute("review_info", dao.reviewStar(pCode));
 		
-		
 //		ArrayList<BDtoQnA> dtoQnA = dao.qnaList(pCode);
 //		request.setAttribute("QnA_list", dtoQnA);
 		
 		String qna_strPg = request.getParameter("qna_pg"); //list.jsp?pg=?
-		int qna_rowSize = 3; //한페이지에 보여줄 글의 수
+		int qna_rowSize = 5; //한페이지에 보여줄 글의 수
 		int qna_pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
 		
 		if(qna_strPg != null){ //list.jsp?pg=2
@@ -105,7 +105,7 @@ public class BCommandHomeProduct implements BCommand {
 		// int totalPage = total/rowSize + (total%rowSize==0?0:1);
 		int qna_block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
 		int qna_from = (qna_pg * qna_rowSize) - (qna_rowSize-1) - 1; //(1*10)-(10-1)=10-9=1 //from
-		int qna_to = 3; // 10개씩 자름 // 만일 1~5개씩 보이고싶다면 to 변수에 5라고 적으면 됨.
+		int qna_to = 5; // 10개씩 자름 // 만일 1~5개씩 보이고싶다면 to 변수에 5라고 적으면 됨.
 		int qna_fromPage = ((qna_pg-1)/qna_block * qna_block) + 1;		//보여줄 페이지의 시작
 		int qna_toPage = ((qna_pg-1)/qna_block * qna_block) + qna_block;	//보여줄 페이지의 끝
 		if(qna_toPage> qna_allPage){ // 예) 20>17
@@ -123,6 +123,13 @@ public class BCommandHomeProduct implements BCommand {
 		model.addAttribute("QnA_pageCount", qna_pageCount);
 		model.addAttribute("QnA_ALLPAGE", qna_allPage);
 		model.addAttribute("QnA_list", dao.qnaList(pCode, qna_from, qna_to));
+		
+//		수훈님 로그인 끝나면 이걸로 열기
+//		model.addAttribute("QnA_login", Share.userId);
+		
+//		로그인 여부에 따라 페이지 이동
+		model.addAttribute("QnA_login", "jenny78");
+//		model.addAttribute("QnA_login", null);
 
 	}
 

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String pCode = request.getParameter("pCode");
-	String img = request.getParameter("img");
+	String QnA_login = request.getParameter("QnA_login");
 %>
 <!DOCTYPE html>
 <html>
@@ -106,7 +106,7 @@
 						<table>
 							<tr>
 								<td>작성자</td>
-								<td><input type="text" name="cId" placeholder="아이디를 입력해주세요"></td>
+								<td><input type="text" name="cId" value="<%=QnA_login %>" readonly="readonly"></td>
 							</tr>		
 							<tr>
 								<td>문의 제목</td>
