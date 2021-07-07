@@ -85,6 +85,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	private BCommand commandMyPageSellerInfoUpdate = null;
 	private BCommand commandMyPageSellerPwUpdate = null;
 	private BCommand commandMyPageSellerSignOut = null;
+	private BCommand commandHomeProductQ = null;
 	
 	@Autowired
 	public void auto(BCommand allBuy, BCommand allBuyList, BCommand buy, BCommand buyConfirmCartDelete, BCommand buyConfirmList, 
@@ -93,7 +94,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 			BCommand customerInfoUpdate, BCommand customerPwUpdate, BCommand customerSignOut, BCommand deliveryInfo, 
 			BCommand orderList, BCommand orderListCancel, BCommand pCode, BCommand reviewBNum, BCommand reviewDelete,
 			BCommand reviewDeleteList, BCommand reviewRegistration, BCommand reviewRegistrationList, BCommand sellerInfo,
-			BCommand sellerInfoUpdate, BCommand sellerPwUpdate, BCommand sellerSignOut) {
+			BCommand sellerInfoUpdate, BCommand sellerPwUpdate, BCommand sellerSignOut, BCommand homeProductQ) {
 		this.commandMyPageAllBuy = allBuy;
 		this.commandMyPageAllBuyList = allBuyList;
 		this.commandMyPageBuy = buy;
@@ -126,6 +127,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 		this.commandMyPageSellerInfoUpdate = sellerInfoUpdate;
 		this.commandMyPageSellerPwUpdate = sellerPwUpdate;
 		this.commandMyPageSellerSignOut = sellerSignOut;
+		this.commandHomeProductQ = homeProductQ; 
 	}
 	
 	@Autowired
@@ -244,8 +246,7 @@ public class BControllerMyPage {// 2021.07.05 조혜지 - controller 추가
 	@RequestMapping("/productAgain")
 	public String productAgain(HttpSession session, Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		command = new BCommandHomeProductQ();
-		command.execute(session, model, sqlSession);
+		commandHomeProductQ.execute(session, model, sqlSession);
 		return "product";
 	}
 	

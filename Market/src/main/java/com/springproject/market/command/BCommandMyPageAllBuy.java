@@ -55,7 +55,7 @@ public class BCommandMyPageAllBuy implements BCommand { // 2021.07.07 조혜지 
 //		String cId = Share.userId;	
 		String cId = "jenny78";	
 		
-		ArrayList<BDtoMyPageBuy> list = (ArrayList)session.getAttribute("BUY");
+		ArrayList<BDtoMyPageBuy> list = (ArrayList)session.getAttribute("CARTBUY");
 		int temp = (Integer) session.getAttribute("asize");
 		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
 		
