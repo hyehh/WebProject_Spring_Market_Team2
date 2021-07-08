@@ -81,10 +81,10 @@ public class BControllerLogin {
 		request.setAttribute("cId", session.getAttribute("cId"));
 		request.setAttribute("cHIDDEN", session.getAttribute("cHIDDEN"));
 		
-		System.out.print(request.getAttribute("cHIDDEN"));
-		System.out.println("Controller Msg= " + request.getAttribute("cIdchkMessage") );
-		System.out.println("Controller cId= " + request.getAttribute("cId") );
-		System.out.println("Controller cIdchk= " + request.getAttribute("cIdchk") );
+//		System.out.print(request.getAttribute("cHIDDEN"));
+//		System.out.println("Controller Msg= " + request.getAttribute("cIdchkMessage") );
+//		System.out.println("Controller cId= " + request.getAttribute("cId") );
+//		System.out.println("Controller cIdchk= " + request.getAttribute("cIdchk") );
 		
 		return "cIdCheckAlert";
 	}
@@ -117,10 +117,10 @@ public class BControllerLogin {
 		request.setAttribute("sId", session.getAttribute("sId"));
 		request.setAttribute("sHIDDEN", session.getAttribute("sHIDDEN"));
 		
-		System.out.print(request.getAttribute("sHIDDEN"));
-		System.out.println("Controller Msg= " + request.getAttribute("sIdchkMessage") );
-		System.out.println("Controller sId= " + request.getAttribute("sId") );
-		System.out.println("Controller sIdchk= " + request.getAttribute("sIdchk") );
+//		System.out.print(request.getAttribute("sHIDDEN"));
+//		System.out.println("Controller Msg= " + request.getAttribute("sIdchkMessage") );
+//		System.out.println("Controller sId= " + request.getAttribute("sId") );
+//		System.out.println("Controller sIdchk= " + request.getAttribute("sIdchk") );
 		
 		return "sIdCheckAlert"; 
 	}
@@ -148,7 +148,6 @@ public class BControllerLogin {
 		session.getAttribute("RETURNJSP");
 		
 		String returnJsp = (String) request.getAttribute("RETURNJSP");
-		System.out.println("return = " + returnJsp);
 		Share.findId ="";
 		
 		return returnJsp;
@@ -169,7 +168,6 @@ public class BControllerLogin {
 		session.getAttribute("RETURNJSP");
 		
 		String returnJsp = (String) request.getAttribute("RETURNJSP");
-		System.out.println("return = " + returnJsp);
 		Share.findPw ="";
 		
 		return returnJsp;
@@ -183,10 +181,10 @@ public class BControllerLogin {
 		loginAction.execute(session, model, sqlSession);
 		
 		
-		System.out.println(session.getAttribute("userId"));
+//		System.out.println(session.getAttribute("userId"));
 		
 		String returnJsp = (String) session.getAttribute("RETURNJSP");
-		System.out.println(returnJsp);
+//		System.out.println(returnJsp);
 		//Command에서 처리한 결과에 따라서 다른 viewPage로 연결
 		return returnJsp;
 	}
