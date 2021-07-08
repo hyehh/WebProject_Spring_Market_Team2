@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageCustomerInfo;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageCustomerInfoUpdate implements BCommand { // 2021.07.05 조혜지 - 고객 회원 정보 수정 버튼 클릭 시 정보 업데이트 command
 
@@ -36,9 +37,7 @@ public class BCommandMyPageCustomerInfoUpdate implements BCommand { // 2021.07.0
 		String cAddress1 = request.getParameter("cAddress1");
 		String cAddress2 = request.getParameter("cAddress2");			
 
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageCustomerInfo dao = sqlSession.getMapper(BDaoMyPageCustomerInfo.class);
 		dao.customerInfoUpdateDao(cName, cEmail, cBirth, cTel, cPostalCode, cAddress1, cAddress2, cId);

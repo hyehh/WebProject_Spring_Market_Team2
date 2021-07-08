@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageBuy;
 import com.springproject.market.dto.BDtoMyPageBuy;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageAllBuy implements BCommand { // 2021.07.07 조혜지 - 전체 상품 주문 선택 시 주문서 작성/결제 창에서 주문 및 결제 정보 insert하는 command
 
@@ -51,9 +52,7 @@ public class BCommandMyPageAllBuy implements BCommand { // 2021.07.07 조혜지 
 		String bRecTel = request.getParameter("bRecTel");
 		String bRecContent = request.getParameter("bRecContent");
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		ArrayList<BDtoMyPageBuy> list = (ArrayList)session.getAttribute("CARTBUY");
 		int temp = (Integer) session.getAttribute("asize");

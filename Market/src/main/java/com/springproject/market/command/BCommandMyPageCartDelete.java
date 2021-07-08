@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageCart;
 import com.springproject.market.dto.BDtoMyPageCart;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageCartDelete implements BCommand { // 2021.07.06 조혜지 - 장바구니 선택 상품 삭제하는 command
 
@@ -28,9 +29,7 @@ public class BCommandMyPageCartDelete implements BCommand { // 2021.07.06 조혜
 		for(int i=0; i<selectedProduct.length; i++) {
 			wId = Integer.parseInt(selectedProduct[i]);
 			
-//	 		**********수훈님과 연동 시 변경하기***************
-//			String cId = Share.userId;	
-			String cId = "jenny78";	
+			String cId = Share.userId;	
 			
 			BDaoMyPageCart dao = sqlSession.getMapper(BDaoMyPageCart.class);
 			dao.cartDeleteDao(cId, wId);

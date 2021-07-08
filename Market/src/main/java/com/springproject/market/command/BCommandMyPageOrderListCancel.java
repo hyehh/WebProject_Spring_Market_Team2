@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageBuy;
 import com.springproject.market.dto.BDtoMyPageBuy;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageOrderListCancel implements BCommand { // 2021.07.06 조혜지 - 구매 취소 버튼 클릭 시 취소일자 업데이트 & 취소 내역 리스트 보여주는 command
 
@@ -21,9 +22,7 @@ public class BCommandMyPageOrderListCancel implements BCommand { // 2021.07.06 �
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		String bNumber = request.getParameter("bNumber");
 		
 		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);

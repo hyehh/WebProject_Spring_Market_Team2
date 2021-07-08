@@ -39,9 +39,7 @@ public class BCommandMyPageSellerInfoUpdate implements BCommand { // 2021.07.05 
 		String sShopName = request.getParameter("sShopName");		
 		String sNumber = request.getParameter("sNumber");		
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String sId = Share.userId;
-		String sId = "every79";
+		String sId = Share.userId;
 		
 		BDaoMyPageSellerInfo dao = sqlSession.getMapper(BDaoMyPageSellerInfo.class);
 		dao.sellerInfoUpdateDao(sName, sEmail, sBirth, sTel, sPostalCode, sAddress1, sAddress2, sShopName, sNumber, sId);

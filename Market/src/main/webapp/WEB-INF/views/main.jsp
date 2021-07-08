@@ -152,7 +152,7 @@
 							<a href="product?pCode=${dtoBest.pCode }">
 								<li>
 									<div class="item_img">
-										<img alt="${dtoBest.pName } 메인 이미지" src="${dtoBest.pFilePath }">
+										<img alt="${dtoBest.pName } 메인 이미지" src="${pageContext.request.contextPath }/resources/productSave/${dtoBest.pFilePath }">
 									</div>
 									<div class="item_info">
 										<p class="pName">${dtoBest.pName }</p>
@@ -182,7 +182,7 @@
 							<a href="product?pCode=${dtoNew.pCode }">
 								<li>
 									<div class="item_img">
-										<img alt="${dtoNew.pName } 메인 이미지" src="${dtoNew.pFilePath }">
+										<img alt="${dtoNew.pName } 메인 이미지" src="${pageContext.request.contextPath }/resources/productSave/${dtoNew.pFilePath }">
 									</div>
 									<div class="item_info">
 										<p>${dtoNew.pName }</p>
@@ -212,7 +212,7 @@
 							<a href="product?pCode=${dtoRand.pCode }">
 								<li>
 									<div class="item_img">
-										<img alt="${dtoRand.pName } 메인 이미지" src="${dtoRand.pFilePath }">
+										<img alt="${dtoRand.pName } 메인 이미지" src="${pageContext.request.contextPath }/resources/productSave/${dtoRand.pFilePath }">
 									</div>
 									<div class="item_info">
 										<p>${dtoRand.pName }</p>

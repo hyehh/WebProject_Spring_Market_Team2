@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageCustomerInfo;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageCustomerSignOut implements BCommand { // 2021.07.05 조혜지 - 고객 회원 탈퇴 command
 
@@ -27,9 +28,7 @@ public class BCommandMyPageCustomerSignOut implements BCommand { // 2021.07.05 �
 			ReasonList += " - " + s;
 		}
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageCustomerInfo dao = sqlSession.getMapper(BDaoMyPageCustomerInfo.class);
 		dao.customerSignOutDao(ReasonList, cSignOutContent, cId);

@@ -22,9 +22,7 @@ public class BCommandMyPageCartList implements BCommand { // 2021.07.05 조혜�
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageCart dao = sqlSession.getMapper(BDaoMyPageCart.class);
 

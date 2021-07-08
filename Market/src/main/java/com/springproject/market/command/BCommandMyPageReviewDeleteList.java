@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageReview;
 import com.springproject.market.dto.BDtoMyPageReview;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageReviewDeleteList implements BCommand { // 2021.07.06 조혜지 - 리뷰 작성된 목록 불러오는 command
 
@@ -21,9 +22,7 @@ public class BCommandMyPageReviewDeleteList implements BCommand { // 2021.07.06 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageReview dao = sqlSession.getMapper(BDaoMyPageReview.class);
 		

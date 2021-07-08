@@ -14,9 +14,7 @@ public class BCommandMyPageSellerInfo implements BCommand { // 2021.07.05 조혜
 	public void execute(HttpSession session, Model model, SqlSession sqlSession) {
 		// TODO Auto-generated method stub
 
-// 		**********수훈님과 연동 시 변경하기***************
-//		String sId = Share.userId;
-		String sId = "every79";
+		String sId = Share.userId;
 		
 		BDaoMyPageSellerInfo dao = sqlSession.getMapper(BDaoMyPageSellerInfo.class);
 		model.addAttribute("SELLERINFO", dao.sellerinfoDao(sId));

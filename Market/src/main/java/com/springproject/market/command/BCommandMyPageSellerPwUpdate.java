@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageSellerInfo;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageSellerPwUpdate implements BCommand { // 2021.07.05 조혜지 - 판매자 비밀번호 변경 command
 
@@ -22,9 +23,7 @@ public class BCommandMyPageSellerPwUpdate implements BCommand { // 2021.07.05 �
 		String sPw = request.getParameter("sPw");
 		System.out.println(sPw);
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String sId = Share.userId;
-		String sId = "every79";
+		String sId = Share.userId;
 		
 		BDaoMyPageSellerInfo dao = sqlSession.getMapper(BDaoMyPageSellerInfo.class);
 		dao.sellerPwUpdateDao(sPw, sId);

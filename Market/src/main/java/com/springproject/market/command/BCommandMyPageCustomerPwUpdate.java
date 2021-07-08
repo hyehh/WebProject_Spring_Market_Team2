@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageCustomerInfo;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageCustomerPwUpdate implements BCommand { // 2021.07.05 조혜지 - 회원 비밀번호 변경 command
 
@@ -21,9 +22,7 @@ public class BCommandMyPageCustomerPwUpdate implements BCommand { // 2021.07.05 
 		
 		String cPw = request.getParameter("cPw");
 
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageCustomerInfo dao = sqlSession.getMapper(BDaoMyPageCustomerInfo.class);
 		dao.customerPwUpdateDao(cPw, cId);

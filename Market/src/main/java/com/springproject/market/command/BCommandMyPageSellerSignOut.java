@@ -28,9 +28,7 @@ public class BCommandMyPageSellerSignOut implements BCommand { // 2021.07.05 조
 			ReasonList += " - " + s;
 		}
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String sId = Share.userId;
-		String sId = "every79";
+		String sId = Share.userId;
 		
 		BDaoMyPageSellerInfo dao = sqlSession.getMapper(BDaoMyPageSellerInfo.class);
 		dao.sellerSignOutDao(ReasonList, sSignOutContent, sId);

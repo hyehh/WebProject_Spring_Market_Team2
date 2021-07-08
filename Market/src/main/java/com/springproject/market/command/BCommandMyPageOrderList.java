@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageBuy;
 import com.springproject.market.dto.BDtoMyPageBuy;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageOrderList implements BCommand { // 2021.07.06 조혜지 - 주문 완료한 목록 불러오는 command
 
@@ -21,9 +22,7 @@ public class BCommandMyPageOrderList implements BCommand { // 2021.07.06 조혜�
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
 		

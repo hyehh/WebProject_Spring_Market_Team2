@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageBuy;
 import com.springproject.market.dto.BDtoMyPageBuy;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageBuyList implements BCommand { // 2021.07.06 조혜지 - 장바구니에서 선택한 상품만 가져오는 command
 
@@ -28,9 +29,7 @@ public class BCommandMyPageBuyList implements BCommand { // 2021.07.06 조혜지
 		for(int i=0; i<selectedProduct.length; i++) {
 			wId = Integer.parseInt(selectedProduct[i]);
 			
-//	 		**********수훈님과 연동 시 변경하기***************
-//			String cId = Share.userId;	
-			String cId = "jenny78";	
+			String cId = Share.userId;	
 			
 			BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
 			BDtoMyPageBuy dto = dao.customerBuyListDao(cId, wId);

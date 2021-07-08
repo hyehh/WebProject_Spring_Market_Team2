@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageBuy;
 import com.springproject.market.dto.BDtoMyPageBuy;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageBuyer implements BCommand { // 2021.07.06 조혜지 - 주문서 작성/결제 창에서 DB에 있는 주문자 정보 불러오는 command
 
@@ -14,9 +15,7 @@ public class BCommandMyPageBuyer implements BCommand { // 2021.07.06 조혜지 -
 	public void execute(HttpSession session, Model model, SqlSession sqlSession) {
 		// TODO Auto-generated method stub
 
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageBuy dao = sqlSession.getMapper(BDaoMyPageBuy.class);
 		BDtoMyPageBuy dto = dao.buyerInfoDao(cId);

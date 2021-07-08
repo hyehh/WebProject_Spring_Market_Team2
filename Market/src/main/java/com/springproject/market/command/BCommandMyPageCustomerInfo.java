@@ -15,9 +15,7 @@ public class BCommandMyPageCustomerInfo implements BCommand { // 2021.07.05 조�
 	public void execute(HttpSession session, Model model, SqlSession sqlSession) {
 		// TODO Auto-generated method stub
 
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		BDaoMyPageCustomerInfo dao = sqlSession.getMapper(BDaoMyPageCustomerInfo.class);
 		model.addAttribute("CUSTOMERINFO", dao.customerinfoDao(cId));

@@ -112,10 +112,10 @@ public class BCommandHomeProductQ implements BCommand {
 		model.addAttribute("QnA_list", dao.qnaList(pCode, qna_from, qna_to));
 		
 //		수훈님 로그인 끝나면 이걸로 열기
-//		model.addAttribute("QnA_login", Share.userId);
+		model.addAttribute("QnA_login", Share.userId);
 		
 //		로그인 여부에 따라 페이지 이동
-		model.addAttribute("QnA_login", "jenny78");
+//		model.addAttribute("QnA_login", "jenny78");
 //		model.addAttribute("QnA_login", null);
 
 	}

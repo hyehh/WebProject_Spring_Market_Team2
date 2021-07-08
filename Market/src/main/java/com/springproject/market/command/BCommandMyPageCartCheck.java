@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.springproject.market.dao.BDaoMyPageCart;
+import com.springproject.market.util.Share;
 
 public class BCommandMyPageCartCheck implements BCommand { // 2021.07.05 조혜지 - 장바구니에 같은 제품이 존재하는지 여부 체크하는 command
 
@@ -18,9 +19,7 @@ public class BCommandMyPageCartCheck implements BCommand { // 2021.07.05 조혜�
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";	
+		String cId = Share.userId;	
 		
 		String pCode = request.getParameter("pCode");
 		

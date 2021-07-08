@@ -22,9 +22,7 @@ public class BCommandMyPageCartUpdate implements BCommand { // 2021.07.05 조혜
 		
 		String wQuantity = request.getParameter("wQuantity");
 
-// 		**********수훈님과 연동 시 변경하기***************
-//		String cId = Share.userId;	
-		String cId = "jenny78";
+		String cId = Share.userId;	
 		
 		String pCode = request.getParameter("pCode");
 		
